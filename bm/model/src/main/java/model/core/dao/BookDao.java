@@ -12,14 +12,14 @@ import com.ontimize.jee.server.dao.jdbc.OntimizeJdbcDaoSupport;
 @ConfigurationFile(configurationFile = "dao/BookDao.xml", configurationFilePlaceholder = "dao/placeholders.properties")
 public class BookDao extends OntimizeJdbcDaoSupport {
 
-	public static final String ATTR_ID = "ID";
-	public static final String ATTR_TITLE = "TITLE";
-	public static final String ATTR_DESCRIPTION = "DESCRIPTION";
-	public static final String ATTR_AUTHOR = "AUTHOR";
-	public static final String ATTR_PAGENUMBER = "PAGENUMBER";
-	public static final String ATTR_ISBN = "ISBN";
-	public static final String ATTR_EDITORIAL = "EDITORIAL";
-	public static final String ATTR_EDITION = "EDITION";
+	public static final String ATTR_ID = "BOOKID";
+	public static final String ATTR_TITLE = "BOOKTITLE";
+	public static final String ATTR_DESCRIPTION = "BOOKDESCRIPTION";
+	public static final String ATTR_AUTHOR = "BOOKAUTHOR";
+	public static final String ATTR_PAGENUMBER = "BOOKPAGENUMBER";
+	public static final String ATTR_ISBN = "BOOKISBN";
+	public static final String ATTR_EDITORIAL = "BOOKEDITORIAL";
+	public static final String ATTR_EDITION = "BOOKEDITION";
 	public static final String ATTR_BOOKPUBLICATIONYEAR = "BOOKPUBLICATIONYEAR";
 
 	
