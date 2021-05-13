@@ -6,10 +6,10 @@
  catalog="" schema="${mainschema}" table="COPY"
  datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
  <DeleteKeys>
-  <Column>COPYID</Column>
+  <Column>copyid</Column>
  </DeleteKeys>
  <UpdateKeys>
-  <Column>COPYID</Column>
+  <Column>copyid</Column>
  </UpdateKeys>
- <GeneratedKey>COPYID</GeneratedKey>
+ <GeneratedKey>copyid</GeneratedKey>
 </JdbcEntitySetup>
