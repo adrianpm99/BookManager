@@ -1,2 +1,4 @@
+api\core\service\ICopyService.class
+api\core\service\ICustomerService.class
 api\core\service\IBookService.class
 api\core\service\IUserService.class
