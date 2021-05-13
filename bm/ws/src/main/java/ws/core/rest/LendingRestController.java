@@ -10,7 +10,7 @@ import com.ontimize.jee.server.rest.ORestController;
 import api.core.service.ILendingService;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/lendings")
 @ComponentScan(basePackageClasses = { ILendingService.class })
 public class LendingRestController extends ORestController<ILendingService>{
 
