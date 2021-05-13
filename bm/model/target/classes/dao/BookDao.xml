@@ -6,10 +6,22 @@
  catalog="" schema="${mainschema}" table="BOOK"
  datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
  <DeleteKeys>
+<<<<<<< HEAD
   <Column>bookid</Column>
+=======
+  <Column>bookId</Column>
+>>>>>>> branch 'development' of https://github.com/adrianpm99/BookManager
  </DeleteKeys>
  <UpdateKeys>
+<<<<<<< HEAD
   <Column>bookid</Column>
+=======
+  <Column>bookId</Column>
+>>>>>>> branch 'development' of https://github.com/adrianpm99/BookManager
  </UpdateKeys>
+<<<<<<< HEAD
  <GeneratedKey>bookid</GeneratedKey>
+=======
+ <GeneratedKey>bookId</GeneratedKey>
+>>>>>>> branch 'development' of https://github.com/adrianpm99/BookManager
 </JdbcEntitySetup>

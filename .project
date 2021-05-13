@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+<<<<<<< HEAD
+	<name>BookManager</name>
+=======
+	<name>BookManagerRest</name>
+>>>>>>> branch 'development' of https://github.com/adrianpm99/BookManager.git
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+	</natures>
+</projectDescription>

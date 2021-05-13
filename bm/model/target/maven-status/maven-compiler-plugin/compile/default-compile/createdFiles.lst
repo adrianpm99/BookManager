@@ -1,5 +1,0 @@
-model\core\dao\BookDao.class
-model\core\dao\UserRoleDao.class
-model\core\service\UserService.class
-model\core\dao\UserDao.class
-model\core\service\BookService.class
