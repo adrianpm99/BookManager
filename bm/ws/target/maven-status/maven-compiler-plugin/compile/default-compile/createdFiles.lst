@@ -1,6 +1,0 @@
-ws\core\rest\BookRestController.class
-ws\core\rest\UserRestController.class
-ws\core\rest\CopyRestController.class
-ws\core\rest\CustomerRestController.class
-ws\core\rest\MainRestController.class
-ws\core\rest\TestRestController.class

@@ -1,9 +1,0 @@
-model\core\service\CustomerService.class
-model\core\service\UserService.class
-model\core\dao\CopyDao.class
-model\core\service\CopyService.class
-model\core\service\BookService.class
-model\core\dao\BookDao.class
-model\core\dao\CustomerDao.class
-model\core\dao\UserRoleDao.class
-model\core\dao\UserDao.class
