@@ -20,6 +20,14 @@
      databaseName="CUSTOMERID" />
     <AmbiguousColumn name="CUSTOMERID_LENDING" prefix="L"
      databaseName="CUSTOMERID" />
+     <AmbiguousColumn name="COPYID_COPY" prefix="COP"
+     databaseName="COPYID" />
+     <AmbiguousColumn name="COPYID_COPYLENDING" prefix="CL"
+     databaseName="COPYID" />
+     <AmbiguousColumn name="BOOKID_COPY" prefix="COP"
+     databaseName="BOOKID" />
+     <AmbiguousColumn name="BOOKID_BOOK" prefix="B"
+     databaseName="BOOKID" />
    </AmbiguousColumns>
    <Sentence>
    <![CDATA[
