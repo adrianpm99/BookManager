@@ -1,7 +1,7 @@
 {
 	"folders": {},
 	"connections": {
-		"postgres-jdbc-17964d3817e-6c6bfa4e8b249ae9": {
+		"postgres-jdbc-179650ebc5a-53c76c3e143bf2ef": {
 			"provider": "postgresql",
 			"driver": "postgres-jdbc",
 			"name": "postgres",
@@ -23,11 +23,7 @@
 					"postgresql.dd.plain.string": "false",
 					"postgresql.dd.tag.string": "false"
 				},
-				"auth-model": "native",
-				"handlers": {}
-			},
-			"custom-properties": {
-				"database.meta.separate.connection": "false"
+				"auth-model": "native"
 			}
 		}
 	},

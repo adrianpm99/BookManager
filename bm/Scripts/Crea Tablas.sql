@@ -20,6 +20,10 @@ CREATE TABLE IF NOT EXISTS  book (
 
 );  
 
+ALTER SEQUENCE public.book_bookid_seq RESTART 9; 
+
+ 
+
 CREATE TABLE IF NOT EXISTS copy (  
 
     copyId SERIAL PRIMARY KEY,   
@@ -29,6 +33,10 @@ CREATE TABLE IF NOT EXISTS copy (
     CopyNotes VARCHAR(50) NOT NULL   
 
 );  
+
+ALTER SEQUENCE public.copy_copyid_seq RESTART 19; 
+
+ 
 
 CREATE TABLE IF NOT EXISTS customer (  
 
@@ -40,6 +48,10 @@ CREATE TABLE IF NOT EXISTS customer (
 
 ); 
 
+ALTER SEQUENCE public.customer_customerid_seq RESTART 10; 
+
+ 
+
 CREATE TABLE IF NOT EXISTS reservation (   
 
     reservationId SERIAL PRIMARY KEY ,   
@@ -48,7 +60,11 @@ CREATE TABLE IF NOT EXISTS reservation (
 
     customerId INT NOT NULL REFERENCES  customer(customerId) 
 
-);     
+);  
+
+ALTER SEQUENCE public.customer_customerid_seq RESTART 2; 
+
+ 
 
 CREATE TABLE IF NOT EXISTS lending (    
 
@@ -64,7 +80,11 @@ CREATE TABLE IF NOT EXISTS lending (
 
     lendingNotes VARCHAR (200)   
 
-);    
+);  
+
+ALTER SEQUENCE public.lending_lendingid_seq RESTART 8; 
+
+ 
 
 CREATE TABLE IF NOT EXISTS copyLending(   
 
@@ -74,7 +94,11 @@ CREATE TABLE IF NOT EXISTS copyLending(
 
     lendingId INT NOT NULL REFERENCES lending(lendingId)   
 
-);   
+);  
+
+ALTER SEQUENCE public.copylending_copylendingid_seq RESTART 11; 
+
+ 
 
 CREATE TABLE IF NOT EXISTS shelving(   
 
@@ -83,6 +107,10 @@ CREATE TABLE IF NOT EXISTS shelving(
    shelvingPublicNumber INT NOT NULL   
 
 );   
+
+ALTER SEQUENCE public.shelving_shelvingid_seq RESTART 3; 
+
+ 
 
 CREATE TABLE IF NOT EXISTS copyShelving(   
 
@@ -93,6 +121,10 @@ CREATE TABLE IF NOT EXISTS copyShelving(
    copyId INT NOT NULL REFERENCES copy(copyId)  
 
 ); 
+
+ALTER SEQUENCE public.copyshelving_copyshelvingid_seq RESTART 19; 
+
+ 
 
 CREATE TABLE IF NOT EXISTS TUSER ( 
 
