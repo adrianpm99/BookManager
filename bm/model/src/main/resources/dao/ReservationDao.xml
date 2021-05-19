@@ -12,4 +12,32 @@
   <Column>reservationid</Column>
  </UpdateKeys>
  <GeneratedKey>reservationid</GeneratedKey>
+ 
+ <Queries>
+  <Query id="details">
+  <AmbiguousColumns>
+	  <AmbiguousColumn name="B_BOOKID" prefix="B"
+	     databaseName="BOOKID" />
+	   <AmbiguousColumn name="R_BOOKID" prefix="R"
+	   databaseName="BOOKID" />
+	   <AmbiguousColumn name="C_CUSTOMERID" prefix="C"
+	     databaseName="CUSTOMERID" />
+	   <AmbiguousColumn name="R_CUSTOMERID" prefix="R"
+	   databaseName="CUSTOMERID" />
+   </AmbiguousColumns>
+   <Sentence>
+   <![CDATA[
+     SELECT
+      #COLUMNS#
+     FROM
+      RESERVATION R
+     INNER JOIN BOOK B ON
+      R.BOOKID = B.BOOKID
+     INNER JOIN CUSTOMER C ON
+      R.CUSTOMERID = C.CUSTOMERID
+     #WHERE#
+   ]]>
+   </Sentence>
+  </Query>
+ </Queries>
 </JdbcEntitySetup>
