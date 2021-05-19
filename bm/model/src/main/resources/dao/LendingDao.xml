@@ -12,4 +12,33 @@
   <Column>lendingid</Column>
  </UpdateKeys>
  <GeneratedKey>lendingid</GeneratedKey>
+ 
+ <Queries>
+  <Query id="details">
+   <AmbiguousColumns>
+    <AmbiguousColumn name="CUSTOMERID_CUSTOMER" prefix="C"
+     databaseName="CUSTOMERID" />
+    <AmbiguousColumn name="CUSTOMERID_LENDING" prefix="L"
+     databaseName="CUSTOMERID" />
+   </AmbiguousColumns>
+   <Sentence>
+   <![CDATA[
+     SELECT
+      #COLUMNS#
+     FROM
+      PUBLIC.LENDING L
+     INNER JOIN PUBLIC.CUSTOMER C ON
+      L.CUSTOMERID = C.CUSTOMERID
+     INNER JOIN PUBLIC.COPYLENDING CL ON
+      CL.LENDINGID = L.LENDINGID
+     INNER JOIN PUBLIC.COPY COP ON
+      COP.COPYID = CL.COPYID
+     INNER JOIN PUBLIC.BOOK B ON
+      B.BOOKID = COP.BOOKID
+     #WHERE#
+   ]]>
+   </Sentence>
+  </Query>
+ </Queries>
+ 
 </JdbcEntitySetup>
