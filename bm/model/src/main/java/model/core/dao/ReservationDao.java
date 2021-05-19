@@ -15,5 +15,6 @@ public class ReservationDao extends OntimizeJdbcDaoSupport {
 	public static final String ATTR_RESERVATIONID = "RESERVATIONID";
 	public static final String ATTR_BOOKID = "BOOKID";
 	public static final String ATTR_CUSTOMERID = "CUSTOMERID";
+	public static final String QUERY_RESERVATION_DETAILS = "details";
 
 }

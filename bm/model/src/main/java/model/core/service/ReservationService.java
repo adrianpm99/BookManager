@@ -45,4 +45,12 @@ public class ReservationService implements IReservationService {
 		return this.daoHelper.delete(this.ReservationDao, keyMap);
 	}
 
+	@Override
+	public EntityResult reservationDetailQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException {
+		return this.daoHelper.query(this.ReservationDao, keyMap, attrList, 
+				model.core.dao.ReservationDao.QUERY_RESERVATION_DETAILS);
+	
+	}
+
 }

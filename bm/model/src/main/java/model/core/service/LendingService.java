@@ -44,5 +44,11 @@ public class LendingService implements ILendingService{
 	public EntityResult lendingDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
 		return this.daoHelper.delete(this.lendingDao, keyMap);
 	}
+
+	@Override
+	public EntityResult lendingDetailsQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException {
+		return this.daoHelper.query(this.lendingDao, keyMap, attrList, LendingDao.QUERY_LENDING_DETAILS);
+	}
 	
 }
