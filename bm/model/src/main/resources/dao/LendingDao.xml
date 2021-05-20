@@ -28,20 +28,41 @@
    <Sentence>
    <![CDATA[
      SELECT
-      #COLUMNS#
+      	#COLUMNS#
      FROM
-      LENDING L
+      	LENDING L
      INNER JOIN CUSTOMER C ON
-      L.CUSTOMERID = C.CUSTOMERID
-     INNER JOIN COPYLENDING CL ON
-      CL.LENDINGID = L.LENDINGID
-     INNER JOIN COPY COP ON
-      COP.COPYID = CL.COPYID
-     INNER JOIN BOOK B ON
-      B.BOOKID = COP.BOOKID
+      	L.CUSTOMERID = C.CUSTOMERID
      #WHERE#
    ]]>
    </Sentence>
+  </Query>
+  <Query id="copiesFromLending">
+  	<AmbiguousColumns>
+  		<AmbiguousColumn name="COPYID" prefix="COP" databaseName="COPYID" />
+    	<AmbiguousColumn name="CL_COPYID_COPYLENDING" prefix="CL" databaseName="COPYID" />
+    	
+  		<AmbiguousColumn name="LENDINGID" prefix="L" databaseName="LENDINGID" />
+    	<AmbiguousColumn name="CL_LENDINGID" prefix="CL" databaseName="LENDINGID" />
+    	
+    	<AmbiguousColumn name="COP_BOOKID" prefix="COP" databaseName="BOOKID" />
+    	<AmbiguousColumn name="BOOKID" prefix="B" databaseName="BOOKID" />
+    </AmbiguousColumns>
+  	<Sentence>
+  		<![CDATA[
+     SELECT
+     	#COLUMNS#
+     FROM
+     	LENDING L
+     INNER JOIN COPYLENDING CL ON
+     	L.LENDINGID = CL.LENDINGID
+     INNER JOIN COPY COP ON
+     	CL.COPYID = COP.COPYID
+     INNER JOIN BOOK B ON 
+     	COP.BOOKID = B.BOOKID
+     #WHERE#
+   ]]>
+  	</Sentence>
   </Query>
   <Query id="expiredLending">
    <Sentence>
