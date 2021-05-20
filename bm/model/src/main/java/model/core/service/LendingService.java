@@ -50,5 +50,12 @@ public class LendingService implements ILendingService{
 			throws OntimizeJEERuntimeException {
 		return this.daoHelper.query(this.lendingDao, keyMap, attrList, LendingDao.QUERY_LENDING_DETAILS);
 	}
+
+	@Override
+	public EntityResult expiredLendingQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException {
+		
+		return this.daoHelper.query(this.lendingDao, keyMap, attrList, LendingDao.QUERY_EXPIRED_LENDING);
+	}
 	
 }

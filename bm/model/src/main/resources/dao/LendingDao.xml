@@ -28,22 +28,38 @@
      databaseName="BOOKID" />
      <AmbiguousColumn name="BOOKID_BOOK" prefix="B"
      databaseName="BOOKID" />
+     <AmbiguousColumn name="L_LENDINGID" prefix="L"
+     databaseName="LENDINGID" />
+     <AmbiguousColumn name="CL_LENDINGID" prefix="CL"
+     databaseName="LENDINGID" />
    </AmbiguousColumns>
    <Sentence>
    <![CDATA[
      SELECT
       #COLUMNS#
      FROM
-      PUBLIC.LENDING L
-     INNER JOIN PUBLIC.CUSTOMER C ON
+      LENDING L
+     INNER JOIN CUSTOMER C ON
       L.CUSTOMERID = C.CUSTOMERID
-     INNER JOIN PUBLIC.COPYLENDING CL ON
+     INNER JOIN COPYLENDING CL ON
       CL.LENDINGID = L.LENDINGID
-     INNER JOIN PUBLIC.COPY COP ON
+     INNER JOIN COPY COP ON
       COP.COPYID = CL.COPYID
-     INNER JOIN PUBLIC.BOOK B ON
+     INNER JOIN BOOK B ON
       B.BOOKID = COP.BOOKID
      #WHERE#
+   ]]>
+   </Sentence>
+  </Query>
+  <Query id="expiredLending">
+   <Sentence>
+   <![CDATA[
+     SELECT
+      #COLUMNS#
+     FROM
+      LENDING L
+     #WHERE#
+     WHERE lendingdeadline < current_date 
    ]]>
    </Sentence>
   </Query>
