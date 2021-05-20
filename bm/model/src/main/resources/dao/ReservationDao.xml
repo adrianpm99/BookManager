@@ -6,7 +6,7 @@
  catalog="" schema="${mainschema}" table="RESERVATION"
  datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
  <DeleteKeys>
-  <Column>reservationid</Column>
+  <Column>RESERVATIONID</Column>
  </DeleteKeys>
  <UpdateKeys>
   <Column>reservationid</Column>
