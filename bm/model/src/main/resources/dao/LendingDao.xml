@@ -16,22 +16,14 @@
  <Queries>
   <Query id="details">
    <AmbiguousColumns>
-    <AmbiguousColumn name="CUSTOMERID_CUSTOMER" prefix="C"
-     databaseName="CUSTOMERID" />
-    <AmbiguousColumn name="CUSTOMERID_LENDING" prefix="L"
-     databaseName="CUSTOMERID" />
-     <AmbiguousColumn name="COPYID_COPY" prefix="COP"
-     databaseName="COPYID" />
-     <AmbiguousColumn name="COPYID_COPYLENDING" prefix="CL"
-     databaseName="COPYID" />
-     <AmbiguousColumn name="BOOKID_COPY" prefix="COP"
-     databaseName="BOOKID" />
-     <AmbiguousColumn name="BOOKID_BOOK" prefix="B"
-     databaseName="BOOKID" />
-     <AmbiguousColumn name="L_LENDINGID" prefix="L"
-     databaseName="LENDINGID" />
-     <AmbiguousColumn name="CL_LENDINGID" prefix="CL"
-     databaseName="LENDINGID" />
+    <AmbiguousColumn name="CUSTOMERID_CUSTOMER" prefix="C" databaseName="CUSTOMERID" />
+    <AmbiguousColumn name="CUSTOMERID_LENDING" prefix="L" databaseName="CUSTOMERID" />
+    <AmbiguousColumn name="COPYID_COPY" prefix="COP" databaseName="COPYID" />
+    <AmbiguousColumn name="COPYID_COPYLENDING" prefix="CL" databaseName="COPYID" />
+    <AmbiguousColumn name="BOOKID_COPY" prefix="COP" databaseName="BOOKID" />
+    <AmbiguousColumn name="BOOKID_BOOK" prefix="B" databaseName="BOOKID" />
+    <AmbiguousColumn name="LENDINGID" prefix="L" databaseName="LENDINGID" />
+    <AmbiguousColumn name="CL_LENDINGID" prefix="CL" databaseName="LENDINGID" />
    </AmbiguousColumns>
    <Sentence>
    <![CDATA[
