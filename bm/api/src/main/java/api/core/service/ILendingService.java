@@ -13,10 +13,7 @@ public interface ILendingService {
 	public EntityResult lendingUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
 	public EntityResult lendingDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
 	public EntityResult lendingDetailsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
-<<<<<<< HEAD
-
-=======
 	public EntityResult expiredLendingQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
 	public EntityResult copiesFromLendingQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
->>>>>>> branch 'development' of https://github.com/adrianpm99/BookManager
+
 }

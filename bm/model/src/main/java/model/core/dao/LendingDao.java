@@ -18,10 +18,7 @@ public class LendingDao extends OntimizeJdbcDaoSupport {
 		public static final String ATTR_LENDINGRETURNDATE = "LENDINGRETURNDATE";
 		public static final String ATTR_LENDINGNOTES = "LENDINGNOTES";
 		public static final String QUERY_LENDING_DETAILS = "details";
-<<<<<<< HEAD
-
-=======
 		public static final String QUERY_EXPIRED_LENDING = "expiredLending";
 		public static final String QUERY_COPIES_FROM_LENDING = "copiesFromLending";
->>>>>>> branch 'development' of https://github.com/adrianpm99/BookManager
+
 }
