@@ -13,4 +13,5 @@ public interface ILendingService {
 	public EntityResult lendingUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
 	public EntityResult lendingDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
 	public EntityResult lendingDetailsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+
 }
