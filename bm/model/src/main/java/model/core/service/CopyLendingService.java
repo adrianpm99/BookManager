@@ -1,7 +1,10 @@
 package model.core.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -22,7 +25,7 @@ public class CopyLendingService implements ICopyLendingService {
 	private CopyLendingDao copyLendingDao;
 	@Autowired
 	private DefaultOntimizeDaoHelper daoHelper;
-
+	
 	@Override
 	public EntityResult copylendingQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException {
@@ -31,7 +34,17 @@ public class CopyLendingService implements ICopyLendingService {
 
 	@Override
 	public EntityResult copylendingInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
-		return this.daoHelper.insert(this.copyLendingDao, attrMap);
+		Map<String, Object> data = new HashMap<String, Object>();
+		List<String> attr = new ArrayList<String>();
+		EntityResult entityResult=null;
+		EntityResult query;
+		data.putAll(attrMap);
+	    attr.add(copyLendingDao.ATTR_COPYID);
+	    query = this.copylendingQuery(data, attr);
+	    if(query.isEmpty()) {
+	    	entityResult =  this.daoHelper.insert(this.copyLendingDao, attrMap);
+	    }
+		return entityResult;
 	}
 
 	@Override
