@@ -31,6 +31,7 @@ public class ReservationService implements IReservationService {
 
 	@Override
 	public EntityResult reservationInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
+		
 		return this.daoHelper.insert(this.ReservationDao, attrMap);
 	}
 
