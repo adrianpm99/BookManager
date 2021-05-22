@@ -1,7 +1,5 @@
 package model.core.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +12,6 @@ import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 
 import api.core.service.ILendingService;
-import model.core.dao.CustomerDao;
 import model.core.dao.LendingDao;
 
 @Service("LendingService")
@@ -25,8 +22,7 @@ public class LendingService implements ILendingService{
 	private LendingDao lendingDao;
 	@Autowired
 	private DefaultOntimizeDaoHelper daoHelper;
-	@Autowired
-	private CustomerService customerService;
+	
 	
 	@Override
 	public EntityResult lendingQuery(Map<String, Object> keyMap, List<String> attrList)
@@ -37,16 +33,7 @@ public class LendingService implements ILendingService{
 	@Override
 	public EntityResult lendingInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
 		
-		Map<String, Object> data = new HashMap<String, Object>();
-		List<String> attr = new ArrayList<String>();
-		EntityResult entityResult=null;
-		EntityResult query;
-	    attr.add(CustomerDao.ATTR_CUSTOMERID);
-	    query = this.customerService.customerQuery(data, attr);
-	    if(!query.isEmpty()) {
-	    	entityResult = this.daoHelper.insert(this.lendingDao, attrMap);
-	    }
-		return entityResult;
+		return this.daoHelper.insert(this.lendingDao, attrMap);
 	}
 
 	@Override
