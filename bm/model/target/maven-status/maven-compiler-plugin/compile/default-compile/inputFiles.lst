@@ -1,6 +1,8 @@
 C:\Users\Laura\git\BookManager\bm\model\src\main\java\model\core\dao\UserDao.java
 C:\Users\Laura\git\BookManager\bm\model\src\main\java\model\core\service\CopyService.java
+C:\Users\Laura\git\BookManager\bm\model\src\main\java\model\core\dao\CopyLendingDao.java
 C:\Users\Laura\git\BookManager\bm\model\src\main\java\model\core\service\ShelvingService.java
+C:\Users\Laura\git\BookManager\bm\model\src\main\java\model\core\service\CopyLendingService.java
 C:\Users\Laura\git\BookManager\bm\model\src\main\java\model\core\dao\UserRoleDao.java
 C:\Users\Laura\git\BookManager\bm\model\src\main\java\model\core\service\UserService.java
 C:\Users\Laura\git\BookManager\bm\model\src\main\java\model\core\dao\ShelvingDao.java

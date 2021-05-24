@@ -9,7 +9,7 @@
   <Column>LENDINGID</Column>
  </DeleteKeys>
  <UpdateKeys>
-  <Column>lendingid</Column>
+  <Column>LENDINGID</Column>
  </UpdateKeys>
  <GeneratedKey>lendingid</GeneratedKey>
  
@@ -71,8 +71,8 @@
       #COLUMNS#
      FROM
       LENDING L
-     #WHERE#
-     WHERE lendingdeadline < current_date 
+      WHERE lendingdeadline < current_date 
+     AND lendingreturndate is null
    ]]>
    </Sentence>
   </Query>

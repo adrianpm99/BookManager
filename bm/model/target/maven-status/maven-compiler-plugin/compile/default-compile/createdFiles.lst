@@ -1,5 +1,17 @@
+model\core\dao\CopyDao.class
+model\core\service\LendingService.class
+model\core\service\CopyLendingService.class
+model\core\dao\ReservationDao.class
+model\core\service\ReservationService.class
+model\core\service\CustomerService.class
+model\core\dao\LendingDao.class
 model\core\service\UserService.class
+model\core\service\CopyService.class
 model\core\service\BookService.class
 model\core\dao\BookDao.class
+model\core\dao\CustomerDao.class
+model\core\dao\ShelvingDao.class
 model\core\dao\UserRoleDao.class
+model\core\dao\CopyLendingDao.class
 model\core\dao\UserDao.class
+model\core\service\ShelvingService.class
