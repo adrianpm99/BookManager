@@ -38,7 +38,7 @@ public class CopyLendingService implements ICopyLendingService {
 		List<String> attr = new ArrayList<String>();
 		EntityResult entityResult=null;
 		EntityResult query;
-		data.putAll(attrMap);
+		//data.putAll(attrMap);
 	    attr.add(copyLendingDao.ATTR_COPYID);
 	    query = this.copylendingQuery(data, attr);
 	    if(query.isEmpty()) {

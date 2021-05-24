@@ -39,7 +39,8 @@ public class LendingService implements ILendingService{
 	@Override
 	public EntityResult lendingUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap)
 			throws OntimizeJEERuntimeException {
-		return this.daoHelper.update(this.lendingDao, keyMap, attrMap);
+		
+		return this.daoHelper.update(this.lendingDao, attrMap, keyMap);
 	}
 
 	@Override

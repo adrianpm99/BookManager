@@ -6,7 +6,7 @@
  catalog="" schema="${mainschema}" table="LENDING"
  datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
  <DeleteKeys>
-  <Column>lendingid</Column>
+  <Column>LENDINGID</Column>
  </DeleteKeys>
  <UpdateKeys>
   <Column>lendingid</Column>
@@ -77,5 +77,6 @@
    </Sentence>
   </Query>
  </Queries>
+
  
 </JdbcEntitySetup>

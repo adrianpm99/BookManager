@@ -9,7 +9,7 @@
   <Column>bookid</Column>
  </DeleteKeys>
  <UpdateKeys>
-  <Column>bookid</Column>
+  <Column>BOOKID</Column>
  </UpdateKeys>
  <GeneratedKey>bookid</GeneratedKey>
 </JdbcEntitySetup>
