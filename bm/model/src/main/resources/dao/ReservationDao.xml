@@ -39,5 +39,23 @@
    ]]>
    </Sentence>
   </Query>
+  <Query id="check_avaliable_book_copies">
+  	<AmbiguousColumns>
+	  	<AmbiguousColumn name="CL_COPYID" prefix="CL" databaseName="COPYID" />
+	  	<AmbiguousColumn name="COPYID" prefix="C" databaseName="COPYID" />
+	  	<AmbiguousColumn name="CL_LENDINGID" prefix="CL" databaseName="LENDINGID" />
+	   	<AmbiguousColumn name="LENDINGID" prefix="L" databaseName="LENDINGID" />
+  	</AmbiguousColumns>
+  	<Sentence>
+  	<![CDATA[
+  		SELECT #COLUMNS#
+  		FROM COPY C
+  		INNER JOIN COPYLENDING CL ON CL.COPYID= C.COPYID
+  		INNER JOIN LENDING L ON L.LENDINGID = CL.LENDINGID
+  		#WHERE#
+		AND LENDINGRETURNDATE NOTNULL
+  	]]>
+  	</Sentence>
+  </Query>
  </Queries>
 </JdbcEntitySetup>

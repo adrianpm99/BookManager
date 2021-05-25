@@ -53,4 +53,10 @@ public class ReservationService implements IReservationService {
 	
 	}
 
+	@Override
+	public EntityResult reservationCheckAvaliableCopies(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException {
+		return this.daoHelper.query(this.ReservationDao, keyMap, attrList);
+	}
+
 }

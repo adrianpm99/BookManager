@@ -1,0 +1,54 @@
+{
+	"folders": {},
+	"connections": {
+		"postgres-jdbc-179650ebc5a-53c76c3e143bf2ef": {
+			"provider": "postgresql",
+			"driver": "postgres-jdbc",
+			"name": "postgres",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "5432",
+				"database": "postgres",
+				"url": "jdbc:postgresql://localhost:5432/postgres",
+				"home": "postgresql-x64-13",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-show-non-default-db@": "false",
+					"@dbeaver-show-template-db@": "false",
+					"@dbeaver-show-unavailable-db@": "false",
+					"@dbeaver-read-all-data-types-db@": "false",
+					"@dbeaver-use-prepared-statements-db@": "false",
+					"postgresql.dd.plain.string": "false",
+					"postgresql.dd.tag.string": "false"
+				},
+				"auth-model": "native"
+			}
+		}
+	},
+	"virtual-models": {
+		"postgres-jdbc-179650ebc5a-53c76c3e143bf2ef": {
+			"postgres": {
+				"public": {
+					"@properties": {
+						"erd.diagram.state": {
+							"serialized": "<diagram version=\"1\" name=\"public\" time=\"202105232003\"><entities><data-source id=\"postgres-jdbc-179650ebc5a-53c76c3e143bf2ef\"><entity id=\"1\" name=\"book\" fq-name=\"public.book\" order=\"0\" x=\"800\" y=\"293\"><path name=\"public\"/><path name=\"postgres\"/></entity><entity id=\"2\" name=\"copy\" fq-name=\"public.&quot;copy&quot;\" order=\"1\" x=\"830\" y=\"37\"><path name=\"public\"/><path name=\"postgres\"/></entity><entity id=\"3\" name=\"copylending\" fq-name=\"public.copylending\" order=\"2\" x=\"1098\" y=\"38\"><path name=\"public\"/><path name=\"postgres\"/></entity><entity id=\"4\" name=\"copyshelving\" fq-name=\"public.copyshelving\" order=\"3\" x=\"563\" y=\"34\"><path name=\"public\"/><path name=\"postgres\"/></entity><entity id=\"5\" name=\"customer\" fq-name=\"public.customer\" order=\"4\" x=\"419\" y=\"262\"><path name=\"public\"/><path name=\"postgres\"/></entity><entity id=\"6\" name=\"lending\" fq-name=\"public.lending\" order=\"5\" x=\"1355\" y=\"34\"><path name=\"public\"/><path name=\"postgres\"/></entity><entity id=\"7\" name=\"reservation\" fq-name=\"public.reservation\" order=\"6\" x=\"1097\" y=\"296\"><path name=\"public\"/><path name=\"postgres\"/></entity><entity id=\"8\" name=\"shelving\" fq-name=\"public.shelving\" order=\"7\" x=\"241\" y=\"42\"><path name=\"public\"/><path name=\"postgres\"/></entity><entity id=\"9\" name=\"trole\" fq-name=\"public.trole\" order=\"8\" x=\"273\" y=\"744\"><path name=\"public\"/><path name=\"postgres\"/></entity><entity id=\"10\" name=\"trole_server_permission\" fq-name=\"public.trole_server_permission\" order=\"9\" x=\"20\" y=\"681\"><path name=\"public\"/><path name=\"postgres\"/></entity><entity id=\"11\" name=\"tserver_permission\" fq-name=\"public.tserver_permission\" order=\"10\" x=\"273\" y=\"628\"><path name=\"public\"/><path name=\"postgres\"/></entity><entity id=\"12\" name=\"tuser\" fq-name=\"public.tuser\" order=\"11\" x=\"273\" y=\"883\"><path name=\"public\"/><path name=\"postgres\"/></entity><entity id=\"13\" name=\"tuser_role\" fq-name=\"public.tuser_role\" order=\"12\" x=\"20\" y=\"848\"><path name=\"public\"/><path name=\"postgres\"/></entity></data-source></entities><relations><relation name=\"copy_bookid_fkey\" fq-name=\"public.&quot;copy&quot;.copy_bookid_fkey\" type=\"fk\" pk-ref=\"1\" fk-ref=\"2\"/><relation name=\"reservation_bookid_fkey\" fq-name=\"public.reservation.reservation_bookid_fkey\" type=\"fk\" pk-ref=\"1\" fk-ref=\"7\"/><relation name=\"copylending_copyid_fkey\" fq-name=\"public.copylending.copylending_copyid_fkey\" type=\"fk\" pk-ref=\"2\" fk-ref=\"3\"/><relation name=\"copyshelving_copyid_fkey\" fq-name=\"public.copyshelving.copyshelving_copyid_fkey\" type=\"fk\" pk-ref=\"2\" fk-ref=\"4\"/><relation name=\"copylending_lendingid_fkey\" fq-name=\"public.copylending.copylending_lendingid_fkey\" type=\"fk\" pk-ref=\"6\" fk-ref=\"3\"/><relation name=\"copyshelving_shelvingid_fkey\" fq-name=\"public.copyshelving.copyshelving_shelvingid_fkey\" type=\"fk\" pk-ref=\"8\" fk-ref=\"4\"/><relation name=\"fk_trole_server_permission\" fq-name=\"public.trole_server_permission.fk_trole_server_permission\" type=\"fk\" pk-ref=\"9\" fk-ref=\"10\"/><relation name=\"fk_trole\" fq-name=\"public.tuser_role.fk_trole\" type=\"fk\" pk-ref=\"9\" fk-ref=\"13\"/><relation name=\"fk_tserver_permission\" fq-name=\"public.trole_server_permission.fk_tserver_permission\" type=\"fk\" pk-ref=\"11\" fk-ref=\"10\"/><relation name=\"fk_tuser\" fq-name=\"public.tuser_role.fk_tuser\" type=\"fk\" pk-ref=\"12\" fk-ref=\"13\"/></relations></diagram>"
+						}
+					}
+				}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}
