@@ -13,5 +13,23 @@
  </UpdateKeys>
  <GeneratedKey>copylendingid</GeneratedKey>
  
+ <Queries>
+  <Query id="copyFromLendingReturnDateNull">
+   <AmbiguousColumns>
+    <AmbiguousColumn name="LENDINGID" prefix="L" databaseName="LENDINGID" />
+    <AmbiguousColumn name="CL_LENDINGID" prefix="CL" databaseName="LENDINGID" />
+   </AmbiguousColumns>
+  <Sentence>
+  <![CDATA[
+ 	SELECT 
+ 		#COLUMNS#
+ 	FROM COPYLENDING 
+ 		CL INNER JOIN LENDING L ON L.LENDINGID = CL.LENDINGID 
+ 	 #WHERE#
+		AND LENDINGRETURNDATE IS NULL
+	]]>
+  </Sentence>	
+  </Query>
+ </Queries>
 </JdbcEntitySetup>
 

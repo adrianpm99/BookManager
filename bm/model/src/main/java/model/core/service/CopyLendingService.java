@@ -40,7 +40,7 @@ public class CopyLendingService implements ICopyLendingService {
 		EntityResult query;
 		data.put(copyLendingDao.ATTR_COPYID, attrMap.get(copyLendingDao.ATTR_COPYID));
 	    attr.add(copyLendingDao.ATTR_COPYID);
-	    query = this.copylendingQuery(data, attr);
+	    query = this.copyFromLendingReturnDateNullQuery(data, attr);
 	    if(query.isEmpty()) {
 	    	entityResult =  this.daoHelper.insert(this.copyLendingDao, attrMap);
 	    }
@@ -58,6 +58,12 @@ public class CopyLendingService implements ICopyLendingService {
 	public EntityResult copylendingDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public EntityResult copyFromLendingReturnDateNullQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException {
+		return this.daoHelper.query(this.copyLendingDao, keyMap, attrList, copyLendingDao.QUERY_COPY_FROM_LENDING_RETURNDATE_NULL);
 	}
 
 }

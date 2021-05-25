@@ -12,5 +12,6 @@ public interface ICopyLendingService {
 	public EntityResult copylendingInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException;
 	public EntityResult copylendingUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
 	public EntityResult copylendingDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
+	public EntityResult copyFromLendingReturnDateNullQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
 	
 }
