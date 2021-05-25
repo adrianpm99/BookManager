@@ -39,5 +39,44 @@
    ]]>
    </Sentence>
   </Query>
+  <Query id="reservationsAvailable">
+  	<AmbiguousColumns>
+  	  <AmbiguousColumn name="BOOKID" prefix="B" databaseName="BOOKID" />
+	  <AmbiguousColumn name="COP_BOOKID" prefix="COP" databaseName="BOOKID" />
+	  <AmbiguousColumn name="COPYID" prefix="COP" databaseName="COPYID" />
+	   <AmbiguousColumn name="CL_COPYID" prefix="R" databaseName="COPYID" />
+	   <AmbiguousColumn name="LENDINGID" prefix="L" databaseName="LENDINGID" />
+	   <AmbiguousColumn name="CL_LENDINGID" prefix="CL" databaseName="LENDINGID" />
+  	</AmbiguousColumns>
+ 	<Sentence>
+ 	 <![CDATA[
+    SELECT
+		#COLUMNS#
+	FROM
+		COPY COP
+	INNER JOIN COPYLENDING CL ON
+		COP.COPYID = CL.COPYID
+	INNER JOIN LENDING L ON
+		CL.LENDINGID = L.LENDINGID
+	INNER JOIN BOOK B ON
+		COP.BOOKID = B.BOOKID
+	WHERE
+		L.LENDINGRETURNDATE IS NULL 	
+	EXCEPT 
+	SELECT
+		#COLUMNS#
+	FROM
+		COPY COP
+	INNER JOIN COPYLENDING CL ON
+		COP.COPYID = CL.COPYID
+	INNER JOIN LENDING L ON
+		CL.LENDINGID = L.LENDINGID
+	INNER JOIN BOOK B ON
+		COP.BOOKID = B.BOOKID
+	WHERE
+		L.LENDINGRETURNDATE IS NOT NULL
+   ]]>
+ 	</Sentence>
+ </Query>
  </Queries>
 </JdbcEntitySetup>

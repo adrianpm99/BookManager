@@ -44,5 +44,11 @@ public class CopyService implements ICopyService{
 	public EntityResult copyDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
 		return this.daoHelper.delete(this.copyDao, keyMap);
 	}
+
+	@Override
+	public EntityResult copiesAvailableQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException {
+		return this.daoHelper.query(this.copyDao, keyMap, attrList, CopyDao.QUERY_COPIES_AVAILABLE);
+	}
 	
 }

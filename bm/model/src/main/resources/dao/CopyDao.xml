@@ -1,15 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <JdbcEntitySetup
- xmlns="http://www.ontimize.com/schema/jdbc"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
- catalog="" schema="${mainschema}" table="COPY"
- datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
- <DeleteKeys>
-  <Column>copyid</Column>
- </DeleteKeys>
- <UpdateKeys>
-  <Column>copyid</Column>
- </UpdateKeys>
- <GeneratedKey>copyid</GeneratedKey>
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	catalog="" schema="${mainschema}" table="COPY"
+	datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
+	<DeleteKeys>
+		<Column>copyid</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>copyid</Column>
+	</UpdateKeys>
+	<GeneratedKey>copyid</GeneratedKey>
+
+	<Queries>
+		<Query id="copiesAvailable">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="COPYID" prefix="COP" databaseName="COPYID" />
+				<AmbiguousColumn name="COPYID_COPYLENDING" prefix="CL" databaseName="COPYID" />
+				<AmbiguousColumn name="LENDINGID" prefix="L" databaseName="LENDINGID" />
+				<AmbiguousColumn name="LENDINGID_COPYLENDING" prefix="CL" databaseName="LENDINGID" />
+			</AmbiguousColumns>
+			<Sentence>
+   <![CDATA[
+	(SELECT
+		#COLUMNS#
+	FROM
+		COPY COP
+	INNER JOIN COPYLENDING CL ON
+		COP.COPYID = CL.COPYID
+	INNER JOIN LENDING L ON
+		CL.LENDINGID = L.LENDINGID
+	INNER JOIN BOOK B ON
+		COP.BOOKID = B.BOOKID
+	WHERE
+		L.LENDINGRETURNDATE IS NOT NULL
+	EXCEPT
+	SELECT
+		#COLUMNS#
+	FROM
+		COPY COP
+	INNER JOIN COPYLENDING CL ON
+		COP.COPYID = CL.COPYID
+	INNER JOIN BOOK B ON
+		COP.BOOKID = B.BOOKID
+	INNER JOIN LENDING L ON
+		CL.LENDINGID = L.LENDINGID
+	WHERE
+		L.LENDINGRETURNDATE IS NULL )
+	UNION ALL
+	(SELECT
+		#COLUMNS#
+	FROM
+		COPY COP
+	INNER JOIN BOOK B ON
+		COP.BOOKID = B.BOOKID
+	EXCEPT
+	SELECT
+		#COLUMNS#
+	FROM
+		COPY COP
+	INNER JOIN COPYLENDING CL ON
+		COP.COPYID = CL.COPYID
+	INNER JOIN BOOK B ON
+		COP.BOOKID = B.BOOKID	
+	INNER JOIN LENDING L ON
+		CL.LENDINGID = L.LENDINGID)
+		order by copyid asc
+   ]]>
+   			</Sentence>
+		</Query>
+	</Queries>
 </JdbcEntitySetup>
