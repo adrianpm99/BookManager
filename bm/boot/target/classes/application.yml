@@ -3,7 +3,7 @@ endpoints:
       enabled: true
 logging:
    level:
-      root: debug
+      root: info
 ontimize:
    corsfilter:
       enabled: true
