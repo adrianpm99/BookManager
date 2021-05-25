@@ -23,6 +23,7 @@ public class CopyLendingService implements ICopyLendingService {
 	
 	@Autowired
 	private CopyLendingDao copyLendingDao;
+	
 	@Autowired
 	private DefaultOntimizeDaoHelper daoHelper;
 	
@@ -35,13 +36,18 @@ public class CopyLendingService implements ICopyLendingService {
 	@Override
 	public EntityResult copylendingInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
 		Map<String, Object> data = new HashMap<String, Object>();
+		Map<String, Object> data2 = new HashMap<String, Object>();
 		List<String> attr = new ArrayList<String>();
 		EntityResult entityResult=null;
 		EntityResult query;
 		data.put(copyLendingDao.ATTR_COPYID, attrMap.get(copyLendingDao.ATTR_COPYID));
+		data2.put(copyLendingDao.ATTR_LENDINGID, attrMap.get(copyLendingDao.ATTR_LENDINGID));
 	    attr.add(copyLendingDao.ATTR_COPYID);
 	    query = this.copyFromLendingReturnDateNullQuery(data, attr);
-	    if(query.isEmpty()) {
+	    int copiesNumber = this.copylendingQuery(data2, attr).calculateRecordNumber();
+	    if(copiesNumber>= 3) {
+	    	entityResult = null;
+	    }else if(query.isEmpty()) {
 	    	entityResult =  this.daoHelper.insert(this.copyLendingDao, attrMap);
 	    }
 		return entityResult;
