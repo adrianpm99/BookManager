@@ -12,4 +12,6 @@
   <Column>copylendingid</Column>
  </UpdateKeys>
  <GeneratedKey>copylendingid</GeneratedKey>
+ 
 </JdbcEntitySetup>
+

@@ -14,6 +14,6 @@ public class CopyLendingDao extends OntimizeJdbcDaoSupport {
 	public static final String ATTR_COPYLENDINGID = "COPYLENDINGID";
 	public static final String ATTR_COPYID = "COPYID";
 	public static final String ATTR_LENDINGID = "LENDINGID";
-	
+	public static final String QUERY_LAST_COPY_FROM_LENDING_RETURNDATE_NULL = "lastCopyFromLendingReturnDateNull";
 
 }

@@ -75,4 +75,5 @@ public class LendingService implements ILendingService{
 		return this.daoHelper.query(this.lendingDao, keyMap, attrList, LendingDao.QUERY_COPIES_FROM_LENDING);
 	}
 	
+	
 }
