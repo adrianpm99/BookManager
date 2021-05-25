@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+ xmlns="http://www.ontimize.com/schema/jdbc"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+ catalog="" schema="${mainschema}" table="COPYLENDING"
+ datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
+ <DeleteKeys>
+  <Column>copylendingid</Column>
+ </DeleteKeys>
+ <UpdateKeys>
+  <Column>copylendingid</Column>
+ </UpdateKeys>
+ <GeneratedKey>copylendingid</GeneratedKey>
+ 
+ <Queries>
+  <Query id="copyFromLendingReturnDateNull">
+   <AmbiguousColumns>
+    <AmbiguousColumn name="LENDINGID" prefix="L" databaseName="LENDINGID" />
+    <AmbiguousColumn name="CL_LENDINGID" prefix="CL" databaseName="LENDINGID" />
+   </AmbiguousColumns>
+  <Sentence>
+  <![CDATA[
+ 	SELECT 
+ 		#COLUMNS#
+ 	FROM COPYLENDING 
+ 		CL INNER JOIN LENDING L ON L.LENDINGID = CL.LENDINGID 
+ 	 #WHERE#
+		AND LENDINGRETURNDATE IS NULL
+	]]>
+  </Sentence>	
+  </Query>
+ </Queries>
+</JdbcEntitySetup>
+

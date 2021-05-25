@@ -1,5 +1,9 @@
 package model.core.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +27,7 @@ public class LendingService implements ILendingService{
 	@Autowired
 	private DefaultOntimizeDaoHelper daoHelper;
 	
+	
 	@Override
 	public EntityResult lendingQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException {
@@ -31,13 +36,19 @@ public class LendingService implements ILendingService{
 
 	@Override
 	public EntityResult lendingInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
+		
 		return this.daoHelper.insert(this.lendingDao, attrMap);
 	}
 
 	@Override
 	public EntityResult lendingUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap)
 			throws OntimizeJEERuntimeException {
-		return this.daoHelper.update(this.lendingDao, keyMap, attrMap);
+		
+		//automatic insertion of the value of the return date to today
+		LocalDate today = LocalDate.now();
+		attrMap.put(lendingDao.ATTR_LENDINGRETURNDATE, today);		
+
+		return this.daoHelper.update(this.lendingDao, attrMap, keyMap);
 	}
 
 	@Override
@@ -50,5 +61,19 @@ public class LendingService implements ILendingService{
 			throws OntimizeJEERuntimeException {
 		return this.daoHelper.query(this.lendingDao, keyMap, attrList, LendingDao.QUERY_LENDING_DETAILS);
 	}
+
+	@Override
+	public EntityResult expiredLendingQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException {
+		
+		return this.daoHelper.query(this.lendingDao, keyMap, attrList, LendingDao.QUERY_EXPIRED_LENDING);
+	}
+
+	@Override
+	public EntityResult copiesFromLendingQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException {
+		return this.daoHelper.query(this.lendingDao, keyMap, attrList, LendingDao.QUERY_COPIES_FROM_LENDING);
+	}
+	
 	
 }
