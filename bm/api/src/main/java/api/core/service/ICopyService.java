@@ -13,5 +13,5 @@ public interface ICopyService {
 	public EntityResult copyInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException;
 	public EntityResult copyUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
 	public EntityResult copyDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
-
+	public EntityResult copiesAvailableQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
 }
