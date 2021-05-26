@@ -16,7 +16,7 @@
  <Queries>
   <Query id="details">
    <AmbiguousColumns>
-    <AmbiguousColumn name="CUSTOMERID_CUSTOMER" prefix="C" databaseName="CUSTOMERID" />
+    <AmbiguousColumn name="CUSTOMERID" prefix="C" databaseName="CUSTOMERID" />
     <AmbiguousColumn name="CUSTOMERID_LENDING" prefix="L" databaseName="CUSTOMERID" />
     <AmbiguousColumn name="COPYID_COPY" prefix="COP" databaseName="COPYID" />
     <AmbiguousColumn name="COPYID_COPYLENDING" prefix="CL" databaseName="COPYID" />
@@ -65,12 +65,18 @@
   	</Sentence>
   </Query>
   <Query id="expiredLending">
+   <AmbiguousColumns>
+   <AmbiguousColumn name="CUSTOMERID" prefix="C" databaseName="CUSTOMERID" />
+    <AmbiguousColumn name="CUSTOMERID_LENDING" prefix="L" databaseName="CUSTOMERID" /> 
+   </AmbiguousColumns>
    <Sentence>
    <![CDATA[
      SELECT
       #COLUMNS#
      FROM
       LENDING L
+       INNER JOIN CUSTOMER C ON
+      	C.CUSTOMERID = L.CUSTOMERID
       WHERE lendingdeadline < current_date 
      AND lendingreturndate is null
    ]]>
