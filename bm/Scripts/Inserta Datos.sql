@@ -78,25 +78,25 @@ INSERT INTO copy VALUES
 
 INSERT INTO customer VALUES  
 
-    (1,'Manolo','Rodriguez Lopez'), 
+    (1,'Manolo','Rodriguez Lopez','32578945A','Calle de la Amargura, 35, 2A','654562585','manolo.rodriguez@clientes.com'), 
 
-    (2,'Francisco','Martinez Gomez'), 
+    (2,'Francisco','Martinez Gomez','3352145B','Calle del Medio, 18, 3B','652356987','francisco.martinez@clientes.com'), 
 
-    (3,'Lucia','Estevez Morales'), 
+    (3,'Lucia','Estevez Morales','44844546','Calle Doblando Esquina, 9, 5A','653125879','lucia.estevez@clientes.com'), 
 
-    (4,'Maria','Iglesias Seoane'), 
+    (4,'Maria','Iglesias Seoane','32578945A','Calle del Poeta Callado, 35, 2A','654562585','manolo.rodriguez@clientes.com'), 
 
-    (5,'Mario','Fernandez Rodriguez'), 
+    (5,'Mario','Fernandez Rodriguez','33547812Z','Calle del Final del Camino, 142, 7C','664521785','mario.fernandez@clientes.com'), 
 
-    (6,'Fernando','Perez Gonzalez'), 
+    (6,'Fernando','Perez Gonzalez','44855462W','Plaza de la Rotonda Cuadrada, 12, 5B','675259745','fernando.perez@clientes.com'), 
 
-    (7,'Antonio','Rodriguez De La Torre'), 
+    (7,'Antonio','Rodriguez De La Torre','33589745K','Travesía del Polígono, 157, 4A','654854129','antonio.rodriguez@clientes.com'), 
 
-    (8,'Pedro','Vazquez Romero'), 
+    (8,'Pedro','Vazquez Romero','32558784L','Plaza de la Fuente Seca, 49, 9D','672587125','pedro.vazquez@clientes.com'), 
 
-    (9,'Azucena','Ibañez Pedrido'), 
+    (9,'Azucena','Ibañez Pedrido','44866157M','Plaza de los Héroes de la Patria, 5, 1C','677562417','azucena.ibañez@clientes.com'), 
 
-    (10,'Encarnacion','Lopez Regueiro') 
+    (10,'Encarnacion','Lopez Regueiro','33547852P','Calle del Edificio, 214, 9C','678658754','manolo.rodriguez@clientes.com') 
 
     ON CONFLICT DO NOTHING;   
 

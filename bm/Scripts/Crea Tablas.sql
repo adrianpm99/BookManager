@@ -40,9 +40,17 @@ CREATE TABLE IF NOT EXISTS customer (
 
     customerName VARCHAR (50),  
 
-    customerSurname VARCHAR (50)  
+    customerSurname VARCHAR (50), 
 
-);
+    customerDni VARCHAR (9), 
+
+    customerAddress VARCHAR (200), 
+
+    customerTlf VARCHAR (9), 
+
+    customerEmail VARCHAR (100) 
+
+); 
 ALTER SEQUENCE public.customer_customerid_seq RESTART 10; 
 
 
