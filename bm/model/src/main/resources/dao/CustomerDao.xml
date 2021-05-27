@@ -9,7 +9,7 @@
   <Column>customerid</Column>
  </DeleteKeys>
  <UpdateKeys>
-  <Column>customerid</Column>
+  <Column>CUSTOMERID</Column>
  </UpdateKeys>
  <GeneratedKey>customerid</GeneratedKey>
 </JdbcEntitySetup>
