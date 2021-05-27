@@ -31,6 +31,11 @@ public class CopyService implements ICopyService{
 
 	@Override
 	public EntityResult copyInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
+		
+		double copyCode = Math.round(Math.random() * 100000);
+		System.out.println(copyCode);
+		attrMap.put(copyDao.ATTR_CODE, copyCode);
+		
 		return this.daoHelper.insert(this.copyDao, attrMap);
 	}
 
