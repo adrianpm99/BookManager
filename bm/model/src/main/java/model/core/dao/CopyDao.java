@@ -15,6 +15,7 @@ public class CopyDao extends OntimizeJdbcDaoSupport {
 	public static final String ATTR_ID = "COPYID";
 	public static final String ATTR_BOOKID = "BOOKID";
 	public static final String ATTR_NOTES = "COPYNOTES";
+	public static final String ATTR_CODE = "COPYCODE";
 	public static final String QUERY_COPIES_AVAILABLE = "copiesAvailable";
 
 }
