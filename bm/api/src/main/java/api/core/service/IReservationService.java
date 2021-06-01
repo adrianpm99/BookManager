@@ -16,4 +16,5 @@ public interface IReservationService {
 	public EntityResult reservationDetailQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
 	public EntityResult reservationCheckAvaliableCopies(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
 	public EntityResult reservationAvailableQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+	public EntityResult expiredReservationQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
 }

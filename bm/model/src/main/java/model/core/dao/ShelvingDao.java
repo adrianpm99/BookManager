@@ -12,7 +12,7 @@ import com.ontimize.jee.server.dao.jdbc.OntimizeJdbcDaoSupport;
 @ConfigurationFile(configurationFile = "dao/ShelvingDao.xml", configurationFilePlaceholder = "dao/placeholders.properties")
 public class ShelvingDao extends OntimizeJdbcDaoSupport {
 
-	public static final String ATTR_ID = "SHELVINGID";
-	public static final String ATTR_PUBLICNUMBER = "SHELVINGPUBLICNUMBER";
+	public static final String ATTR_SHELVINGID = "SHELVINGID";
+	public static final String ATTR_SHELVINGPUBLICNAME = "SHELVINGPUBLICNAME";
 
 }

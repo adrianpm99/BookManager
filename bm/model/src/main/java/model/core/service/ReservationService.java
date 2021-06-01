@@ -80,6 +80,14 @@ public class ReservationService implements IReservationService {
 		return this.daoHelper.query(this.reservationDao, keyMap, attrList, model.core.dao.ReservationDao.QUERY_RESERVATION_AVAILABLE);
 
 	}
+
+	@Override
+	public EntityResult expiredReservationQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException {
+		
+		return this.daoHelper.query(this.reservationDao, keyMap, attrList, model.core.dao.ReservationDao.QUERY_EXPIRED_RESERVATION);
+		
+	}
 		
 
 }
