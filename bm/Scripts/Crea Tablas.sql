@@ -28,9 +28,11 @@ CREATE TABLE IF NOT EXISTS copy (
 
     bookId INT NOT NULL REFERENCES book(bookId),   
 
-    CopyNotes VARCHAR(50) NOT NULL   
+    CopyNotes VARCHAR(50) NOT NULL, 
 
-); 
+    CopyCode INT  
+
+);  
 ALTER SEQUENCE public.copy_copyid_seq RESTART 19; 
 
 
@@ -38,15 +40,15 @@ CREATE TABLE IF NOT EXISTS customer (
 
     customerId SERIAL PRIMARY KEY,  
 
-    customerName VARCHAR (50),  
+    customerName VARCHAR (50) NOT NULL,  
 
-    customerSurname VARCHAR (50), 
+    customerSurname VARCHAR (50) NOT NULL, 
 
-    customerDni VARCHAR (9), 
+    customerDni VARCHAR (9) NOT NULL, 
 
     customerAddress VARCHAR (200), 
 
-    customerTlf VARCHAR (9), 
+    customerTlf VARCHAR (9) NOT NULL, 
 
     customerEmail VARCHAR (100) 
 
@@ -60,10 +62,14 @@ CREATE TABLE IF NOT EXISTS reservation (
 
     bookId INT NOT NULL REFERENCES  book(bookId),   
 
-    customerId INT NOT NULL REFERENCES  customer(customerId) 
+    customerId INT NOT NULL REFERENCES  customer(customerId), 
 
-);     
-ALTER SEQUENCE public.reservation_reservationid_seq RESTART 2;
+    copyId INT REFERENCES copy(copyId), 
+
+    reservationDeadLine DATE 
+
+);  
+ALTER SEQUENCE public.reservation_reservationid_seq RESTART 2; 
 
 
 CREATE TABLE IF NOT EXISTS lending (    
@@ -100,9 +106,9 @@ CREATE TABLE IF NOT EXISTS shelving(
 
    shelvingId SERIAL PRIMARY KEY ,   
 
-   shelvingPublicNumber INT NOT NULL   
+   shelvingPublicName VARCHAR(50) NOT NULL   
 
-);
+);   
 ALTER SEQUENCE public.shelving_shelvingid_seq RESTART 3; 
 
 

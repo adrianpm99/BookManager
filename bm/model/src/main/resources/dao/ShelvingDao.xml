@@ -10,5 +10,5 @@
     <UpdateKeys>
         <Column>SHELVINGID</Column>
     </UpdateKeys>
-    <GeneratedKey>shelvingid</GeneratedKey>
+    <GeneratedKey>SHELVINGID</GeneratedKey>
 </JdbcEntitySetup>
