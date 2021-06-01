@@ -12,7 +12,7 @@ public interface IReservationService {
 	public EntityResult reservationQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
 	public EntityResult reservationInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException;
 	public EntityResult reservationUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
-	public EntityResult reservationDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
+	public EntityResult reservationDetailDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
 	public EntityResult reservationDetailQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
 	public EntityResult reservationCheckAvaliableCopies(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
 	public EntityResult reservationAvailableQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
