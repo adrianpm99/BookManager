@@ -38,41 +38,41 @@ INSERT INTO book VALUES
 
 INSERT INTO copy VALUES   
 
-    (1,1, 'Buen estado'),   
+   (1,1, 'Buen estado',12345),    
 
-    (2,1, 'Buen estado'),  
+    (2,1, 'Buen estado',23456),   
 
-    (3,2, 'Buen estado'),  
+    (3,2, 'Buen estado',34567),   
 
-    (4,2, 'Buen estado'),  
+    (4,2, 'Buen estado',45678),   
 
-    (5,3, 'Buen estado'),  
+    (5,3, 'Buen estado',56789),   
 
-    (6,4, 'Mal estado(Mojado)'),    
+    (6,4, 'Mal estado(Mojado)',67890),     
 
-    (7,5, 'Buen estado'),    
+    (7,5, 'Buen estado',78901),     
 
-    (8,5, 'Buen estado'),  
+    (8,5, 'Buen estado',89012),   
 
-    (9,5, 'Buen estado'),  
+    (9,5, 'Buen estado',12456),   
 
-    (10,5, 'Buen estado'),  
+    (10,5, 'Buen estado',23567),   
 
-    (11,6, 'Buen estado'),  
+    (11,6, 'Buen estado',34678),   
 
-    (12,7, 'Buen estado'),  
+    (12,7, 'Buen estado',45789),   
 
-    (13,7, 'Buen estado'),  
+    (13,7, 'Buen estado',56890),   
 
-    (14,8, 'Buen estado'),  
+    (14,8, 'Buen estado',67901),   
 
-    (15,8, 'Buen estado'),  
+    (15,8, 'Buen estado',13456),   
 
-    (16,8, 'Buen estado'),  
+    (16,8, 'Buen estado',24567),   
 
-    (17,8, 'Buen estado'),  
+    (17,8, 'Buen estado',35678),   
 
-    (18,8, 'Buen estado') 
+    (18,8, 'Buen estado',46789) 
 
     ON CONFLICT DO NOTHING; 
 
@@ -150,11 +150,11 @@ INSERT INTO reservation VALUES
 
 INSERT INTO shelving VALUES   
 
-    (1,1),  
+    (1,'lendings'),  
 
-    (2,2) 
+    (2,'reservations') 
 
-    ON CONFLICT DO NOTHING;  
+    ON CONFLICT DO NOTHING; 
 
 INSERT INTO copyshelving VALUES  
 
