@@ -54,5 +54,12 @@ public class CopyService implements ICopyService{
 			throws OntimizeJEERuntimeException {
 		return this.daoHelper.query(this.copyDao, keyMap, attrList, CopyDao.QUERY_COPIES_AVAILABLE);
 	}
+
+	@Override
+	public EntityResult copiesWithShelvingQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException {
+		return this.daoHelper.query(this.copyDao, keyMap, attrList, CopyDao.QUERY_COPIES_WITH_SHELVING);
+
+	}
 	
 }

@@ -70,5 +70,23 @@
    ]]>
    			</Sentence>
 		</Query>
+		
+		<!-- Query for the book details: now shows the shelving where the copy is aswell -->
+		<Query id="copiesWithShelving">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="COPYID" prefix="C" databaseName="COPYID"/>
+				<AmbiguousColumn name="CS_COPYID" prefix="CS" databaseName="COPYID"/>
+			</AmbiguousColumns>
+			<Sentence>
+				<![CDATA[ 
+					SELECT #COLUMNS# 
+					FROM COPY C 
+					INNER JOIN COPYSHELVING CS ON C.COPYID = CS.COPYID 
+					INNER JOIN SHELVING S ON CS.SHELVINGID = S.SHELVINGID 
+					#WHERE#
+				]]>
+			</Sentence>
+		</Query>
+		
 	</Queries>
 </JdbcEntitySetup>

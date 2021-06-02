@@ -17,5 +17,6 @@ public class CopyDao extends OntimizeJdbcDaoSupport {
 	public static final String ATTR_NOTES = "COPYNOTES";
 	public static final String ATTR_CODE = "COPYCODE";
 	public static final String QUERY_COPIES_AVAILABLE = "copiesAvailable";
+	public static final String QUERY_COPIES_WITH_SHELVING= "copiesWithShelving";
 
 }
