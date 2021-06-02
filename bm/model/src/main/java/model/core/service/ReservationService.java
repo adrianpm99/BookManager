@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class ReservationService implements IReservationService {
 	private DefaultOntimizeDaoHelper daoHelper;
 	@Autowired
 	private CopyDao copyDao;
+	
 
 	@Override
 	public EntityResult reservationQuery(Map<String, Object> keyMap, List<String> attrList)
@@ -57,8 +59,11 @@ public class ReservationService implements IReservationService {
 	}
 
 	@Override
-	public EntityResult reservationDetailDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+	public EntityResult reservationDetailDelete(Map<String, Object> keyMap) 
+			throws OntimizeJEERuntimeException {
+		
 		return this.daoHelper.delete(this.reservationDao, keyMap);
+		
 	}
 
 	@Override
