@@ -121,5 +121,25 @@
    ]]>
    </Sentence>
  </Query>
+ 
+ <Query id="reservationCopyShelving">
+ <AmbiguousColumns>
+ <AmbiguousColumn name="COPYID" prefix="R"
+	     databaseName="COPYID" />
+	   <AmbiguousColumn name="CS_COPYID" prefix="CS"
+	   databaseName="COPYID" />
+ </AmbiguousColumns>
+ <Sentence>
+   <![CDATA[
+     SELECT
+      #COLUMNS#
+     FROM
+      RESERVATION R
+     INNER JOIN COPYSHELVING CS ON
+      CS.COPYID = R.COPYID
+     #WHERE#
+   ]]>
+   </Sentence>
+ </Query>
  </Queries>
 </JdbcEntitySetup>

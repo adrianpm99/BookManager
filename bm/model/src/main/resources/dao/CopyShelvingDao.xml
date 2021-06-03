@@ -9,7 +9,7 @@
   <Column>copyshelvingid</Column>
  </DeleteKeys>
  <UpdateKeys>
-  <Column>copyshelvingid</Column>
+  <Column>COPYSHELVINGID</Column>
  </UpdateKeys>
  <GeneratedKey>copyshelvingid</GeneratedKey>
 </JdbcEntitySetup>

@@ -1,9 +1,7 @@
 package model.core.service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +38,7 @@ public class LendingService implements ILendingService{
 		return this.daoHelper.insert(this.lendingDao, attrMap);
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public EntityResult lendingUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap)
 			throws OntimizeJEERuntimeException {

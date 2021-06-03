@@ -29,6 +29,7 @@ public class CopyService implements ICopyService{
 		return this.daoHelper.query(this.copyDao, keyMap, attrList);
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public EntityResult copyInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
 		

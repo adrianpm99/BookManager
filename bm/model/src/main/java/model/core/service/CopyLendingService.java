@@ -33,6 +33,7 @@ public class CopyLendingService implements ICopyLendingService {
 		return this.daoHelper.query(this.copyLendingDao, keyMap, attrList);
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public EntityResult copylendingInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
 		Map<String, Object> data = new HashMap<String, Object>();
@@ -66,6 +67,7 @@ public class CopyLendingService implements ICopyLendingService {
 		return null;
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public EntityResult copyFromLendingReturnDateNullQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException {
