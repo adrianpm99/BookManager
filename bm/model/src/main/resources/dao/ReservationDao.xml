@@ -185,8 +185,7 @@
        		CL.LENDINGID = L.LENDINGID
        #WHERE#
         AND R.COPYID IS NULL
-    
-   ]]>
+    ]]>
    </Sentence>
  </Query>
  
