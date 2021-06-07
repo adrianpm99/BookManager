@@ -127,6 +127,13 @@ public class ReservationService implements IReservationService {
 			throws OntimizeJEERuntimeException {
 		return this.daoHelper.query(this.reservationDao, keyMap, attrList, ReservationDao.QUERY__RESERVATION_COPY_SHELVING);
 	}
+	
+	@Override
+	public EntityResult reservationCurrentQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException {
 		
+		return this.daoHelper.query(this.reservationDao, keyMap, attrList, model.core.dao.ReservationDao.QUERY_RESERVATION_CURRENT);
+		
+	}
 
 }

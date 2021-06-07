@@ -141,5 +141,54 @@
    ]]>
    </Sentence>
  </Query>
+ 
+ <Query id="reservationCurrent">
+ <AmbiguousColumns>
+	  <AmbiguousColumn name="BOOKID" prefix="R"
+		     databaseName="BOOKID" />
+	   <AmbiguousColumn name="C_BOOKID" prefix="C"
+		  	 databaseName="BOOKID" />
+	   <AmbiguousColumn name="B_BOOKID" prefix="B"
+			  databaseName="BOOKID" />
+	   <AmbiguousColumn name="COPYID" prefix="C"
+		     databaseName="COPYID" />
+	   <AmbiguousColumn name="R_COPYID" prefix="R"
+		     databaseName="COPYID" />
+	   <AmbiguousColumn name="CL_COPYID" prefix="CL"
+		     databaseName="COPYID" />
+	    <AmbiguousColumn name="LENDINGID" prefix="L"
+	  		 databaseName="LENDINGID" />
+	   <AmbiguousColumn name="CL_LENDINGID" prefix="CL"
+	 		  databaseName="LENDINGID" />
+	    <AmbiguousColumn name="CUSTOMERID" prefix="R"
+	 		  databaseName="CUSTOMERID" />
+	    <AmbiguousColumn name="CU_CUSTOMERID" prefix="CU"
+			  databaseName="CUSTOMERID" />
+	   <AmbiguousColumn name="L_CUSTOMERID" prefix="L"
+			   databaseName="CUSTOMERID" />
+   </AmbiguousColumns>
+   <Sentence>
+   <![CDATA[
+     SELECT
+      #COLUMNS#
+     FROM
+     RESERVATION R
+     	INNER JOIN COPY C ON
+     	  R.BOOKID = C.BOOKID 
+     	INNER JOIN BOOK B ON
+     	  B.BOOKID = C.BOOKID
+     	INNER JOIN CUSTOMER CU ON
+     	  CU.CUSTOMERID = R.CUSTOMERID	
+      	INNER JOIN COPYLENDING CL ON
+      		C.COPYID = CL.COPYID
+      	INNER JOIN LENDING L ON
+       		CL.LENDINGID = L.LENDINGID
+       #WHERE#
+        AND R.COPYID IS NULL
+    
+   ]]>
+   </Sentence>
+ </Query>
+ 
  </Queries>
 </JdbcEntitySetup>
