@@ -156,21 +156,30 @@
 		     databaseName="COPYID" />
 	   <AmbiguousColumn name="CL_COPYID" prefix="CL"
 		     databaseName="COPYID" />
-	    <AmbiguousColumn name="LENDINGID" prefix="L"
+	   <AmbiguousColumn name="LENDINGID" prefix="L"
 	  		 databaseName="LENDINGID" />
 	   <AmbiguousColumn name="CL_LENDINGID" prefix="CL"
 	 		  databaseName="LENDINGID" />
-	    <AmbiguousColumn name="CUSTOMERID" prefix="R"
+	   <AmbiguousColumn name="CUSTOMERID" prefix="R"
 	 		  databaseName="CUSTOMERID" />
-	    <AmbiguousColumn name="CU_CUSTOMERID" prefix="CU"
+	   <AmbiguousColumn name="CU_CUSTOMERID" prefix="CU"
 			  databaseName="CUSTOMERID" />
 	   <AmbiguousColumn name="L_CUSTOMERID" prefix="L"
 			   databaseName="CUSTOMERID" />
+		
    </AmbiguousColumns>
    <Sentence>
    <![CDATA[
-     SELECT
-      #COLUMNS#
+ 	SELECT
+      distinct (R.bookid) as IDBOOK,  
+      C.COPYID,C.COPYCODE,B.BOOKTITLE,B.BOOKID,
+       (select min(R.reservationid) as ID from reservation r where r.bookid= b.bookid and R.COPYID IS null ) as RESERVATIONID,
+       (select CUS.CUSTOMERNAME from CUSTOMER CUS, RESERVATION RES
+       		where CUS.CUSTOMERID = RES.CUSTOMERID and RES.RESERVATIONID = 
+       			(select min(R.reservationid)  from reservation r where r.bookid= b.bookid and R.COPYID IS null )) as CUSTOMERNAME,
+       (select CUS.CUSTOMERSURNAME from CUSTOMER CUS, RESERVATION RES
+       		where CUS.CUSTOMERID = RES.CUSTOMERID and RES.RESERVATIONID = 
+       			(select min(R.reservationid)  from reservation r where r.bookid= b.bookid and R.COPYID IS null )) as CUSTOMERSURNAME 
      FROM
      RESERVATION R
      	INNER JOIN COPY C ON
@@ -185,6 +194,9 @@
        		CL.LENDINGID = L.LENDINGID
        #WHERE#
         AND R.COPYID IS NULL
+        GROUP BY R.BOOKID,C.COPYID,C.COPYCODE,B.BOOKTITLE,B.BOOKID
+        ORDER BY RESERVATIONID
+
     ]]>
    </Sentence>
  </Query>
