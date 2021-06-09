@@ -38,15 +38,15 @@ public class UserService implements IUserService {
 	public EntityResult userQuery(Map<?, ?> keyMap, List<?> attrList) {
 		return this.daoHelper.query(userDao, keyMap, attrList);
 	}
-
+	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult userInsert(Map<?, ?> attrMap) {
 		return this.daoHelper.insert(userDao, attrMap);
 	}
-
+	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult userUpdate(Map<?, ?> attrMap, Map<?, ?> keyMap) {
 		return this.daoHelper.update(userDao, attrMap, keyMap);
 	}
-
+	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult userDelete(Map<?, ?> keyMap) {
 		Map<Object, Object> attrMap = new HashMap<>();
 		attrMap.put("user_down_date", new Timestamp(Calendar.getInstance().getTimeInMillis()));

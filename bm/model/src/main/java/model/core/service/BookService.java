@@ -5,10 +5,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import com.ontimize.db.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
+import com.ontimize.jee.common.security.PermissionsProviderSecured;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 
 import api.core.service.IBookService;
@@ -28,18 +30,18 @@ public class BookService implements IBookService {
 			throws OntimizeJEERuntimeException {
 		return this.daoHelper.query(this.bookDao, keyMap, attrList);
 	}
-
+	@Secured({ PermissionsProviderSecured.SECURED })
 	@Override
 	public EntityResult bookInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
 		return this.daoHelper.insert(this.bookDao, attrMap);
 	}
-
+	@Secured({ PermissionsProviderSecured.SECURED })
 	@Override
 	public EntityResult bookUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap)
 			throws OntimizeJEERuntimeException {
 		return this.daoHelper.update(this.bookDao, attrMap, keyMap);
 	}
-
+	@Secured({ PermissionsProviderSecured.SECURED })
 	@Override
 	public EntityResult bookDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
 		return this.daoHelper.delete(this.bookDao, keyMap);

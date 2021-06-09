@@ -144,7 +144,7 @@ INSERT INTO copyLending VALUES
 
 INSERT INTO reservation VALUES  
 
-    (1,6,7) 
+    (1,6,7,11,'2021-06-01') 
 
     ON CONFLICT DO NOTHING;  
 
