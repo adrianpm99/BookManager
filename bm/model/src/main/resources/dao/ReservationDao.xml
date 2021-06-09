@@ -195,6 +195,45 @@
     ]]>
    </Sentence>
  </Query>
- 
+ <Query id="customerPendingReservations">
+ <AmbiguousColumns>
+ <AmbiguousColumn name="BOOKID" prefix="B" databaseName="BOOKID" />
+ <AmbiguousColumn name="CUSTOMERID" prefix="C" databaseName="CUSTOMERID"/>
+ </AmbiguousColumns>
+ <Sentence>
+   <![CDATA[
+ 	SELECT
+ 	 #COLUMNS#
+ 	FROM
+ 	 RESERVATION R
+ 	INNER JOIN BOOK B ON
+ 	 B.BOOKID = R.BOOKID
+ 	 INNER JOIN CUSTOMER C ON
+ 	 C.CUSTOMERID = R.CUSTOMERID
+ 	#WHERE#
+ 	AND RESERVATIONDEADLINE IS NULL		
+ 		]]>
+ 	</Sentence>
+ </Query>
+ <Query id="customerAvailableReservations">
+ <AmbiguousColumns>
+ <AmbiguousColumn name="BOOKID" prefix="B" databaseName="BOOKID"/>
+ <AmbiguousColumn name="CUSTOMERID" prefix="C" databaseName="CUSTOMERID"/>
+ </AmbiguousColumns>
+ <Sentence>
+   <![CDATA[
+ 	SELECT
+ 	 #COLUMNS#
+ 	FROM
+ 	 RESERVATION R
+ 	INNER JOIN BOOK B ON
+ 	 B.BOOKID = R.BOOKID
+ 	 INNER JOIN CUSTOMER C ON
+ 	 C.CUSTOMERID = R.CUSTOMERID
+ 	#WHERE#
+ 	AND RESERVATIONDEADLINE IS NOT NULL		
+ 		]]>
+ </Sentence>
+ </Query>
  </Queries>
 </JdbcEntitySetup>
