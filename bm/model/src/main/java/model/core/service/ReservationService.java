@@ -78,7 +78,7 @@ public class ReservationService implements IReservationService {
 		data.put(reservationDao.ATTR_RESERVATIONID, keyMap.get(reservationDao.ATTR_RESERVATIONID));
 		attr.add(copyShelvingDao.ATTR_COPYID);
 		attr.add(copyShelvingDao.ATTR_COPYSHELVINGID);
-		query = this.reservationQueryCopyLending(data, attr);
+		query = this.reservationQueryCopyShelving(data, attr);
 		
 		//get the value of COPYSHELVINGID to use in the update query
 		@SuppressWarnings("unchecked")
@@ -123,7 +123,7 @@ public class ReservationService implements IReservationService {
 		
 	}
 	
-	public EntityResult reservationQueryCopyLending(Map<String, Object> keyMap, List<String> attrList)
+	public EntityResult reservationQueryCopyShelving(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException {
 		return this.daoHelper.query(this.reservationDao, keyMap, attrList, ReservationDao.QUERY__RESERVATION_COPY_SHELVING);
 	}

@@ -11,4 +11,24 @@
     <UpdateKeys>
         <Column>ID_ROLENAME</Column>
     </UpdateKeys>
+    <GeneratedKey>ID_ROLENAME</GeneratedKey>
+    <Queries>
+	    <Query id="clientPermissions">
+	    <AmbiguousColumns>
+	    	<AmbiguousColumn name="ID_ROLENAME" prefix="R" databaseName="ID_ROLENAME"/>
+	    	<AmbiguousColumn name="UR_ID_ROLENAME" prefix="UR" databaseName="ID_ROLENAME"/> 	
+	    </AmbiguousColumns>
+			<Sentence>
+			<![CDATA[
+				select
+					#COLUMNS#
+				from
+					TROLE R
+					INNER JOIN TUSER_ROLE UR
+					ON R.ID_ROLENAME = UR.ID_ROLENAME
+				#WHERE#
+			]]>
+			</Sentence>
+		</Query>
+    </Queries>
 </JdbcEntitySetup>
