@@ -135,5 +135,11 @@ public class ReservationService implements IReservationService {
 		return this.daoHelper.query(this.reservationDao, keyMap, attrList, model.core.dao.ReservationDao.QUERY_RESERVATION_CURRENT);
 		
 	}
+	
+	public EntityResult customerPendingReservationsQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException{
+		
+		return this.daoHelper.query(this.reservationDao, keyMap, attrList, ReservationDao.QUERY_CUSTOMER_PENDING_RESERVATIONS);
+	}
 
 }
