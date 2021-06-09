@@ -58,43 +58,38 @@
   	</Sentence>
   </Query>
   <Query id="reservationsAvailable">
-  	<AmbiguousColumns>
-  	  <AmbiguousColumn name="BOOKID" prefix="B" databaseName="BOOKID" />
-	  <AmbiguousColumn name="COP_BOOKID" prefix="COP" databaseName="BOOKID" />
-	  <AmbiguousColumn name="COPYID" prefix="COP" databaseName="COPYID" />
-	   <AmbiguousColumn name="CL_COPYID" prefix="R" databaseName="COPYID" />
-	   <AmbiguousColumn name="LENDINGID" prefix="L" databaseName="LENDINGID" />
-	   <AmbiguousColumn name="CL_LENDINGID" prefix="CL" databaseName="LENDINGID" />
-  	</AmbiguousColumns>
- 	<Sentence>
- 	 <![CDATA[
+      <AmbiguousColumns>
+        <AmbiguousColumn name="BOOKID" prefix="B" databaseName="BOOKID" />
+      <AmbiguousColumn name="COP_BOOKID" prefix="COP" databaseName="BOOKID" />
+      <AmbiguousColumn name="COPYID" prefix="COP" databaseName="COPYID" />
+       <AmbiguousColumn name="CL_COPYID" prefix="R" databaseName="COPYID" />
+       <AmbiguousColumn name="LENDINGID" prefix="L" databaseName="LENDINGID" />
+       <AmbiguousColumn name="CL_LENDINGID" prefix="CL" databaseName="LENDINGID" />
+      </AmbiguousColumns>
+     <Sentence>
+      <![CDATA[
     SELECT
-		#COLUMNS#
-	FROM
-		COPY COP
-	INNER JOIN COPYLENDING CL ON
-		COP.COPYID = CL.COPYID
-	INNER JOIN LENDING L ON
-		CL.LENDINGID = L.LENDINGID
-	INNER JOIN BOOK B ON
-		COP.BOOKID = B.BOOKID
-	WHERE
-		L.LENDINGRETURNDATE IS NULL 	
-	EXCEPT 
-	SELECT
-		#COLUMNS#
-	FROM
-		COPY COP
-	INNER JOIN COPYLENDING CL ON
-		COP.COPYID = CL.COPYID
-	INNER JOIN LENDING L ON
-		CL.LENDINGID = L.LENDINGID
-	INNER JOIN BOOK B ON
-		COP.BOOKID = B.BOOKID
-	WHERE
-		L.LENDINGRETURNDATE IS NOT NULL
+        #COLUMNS#
+    FROM
+        COPY COP
+    INNER JOIN COPYLENDING CL ON
+        COP.COPYID = CL.COPYID
+    INNER JOIN LENDING L ON
+        CL.LENDINGID = L.LENDINGID
+    INNER JOIN BOOK B ON
+        COP.BOOKID = B.BOOKID
+    WHERE
+        L.LENDINGRETURNDATE IS NULL     
+    AND
+    COP.BOOKID NOT IN (SELECT  COP.BOOKID FROM COPY COP
+                    LEFT JOIN COPYLENDING CL ON
+                        CL.COPYID = COP.COPYID
+                        WHERE CL.COPYID IS NULL)
+
+ 
+
    ]]>
- 	</Sentence>
+     </Sentence>
  </Query>
  <Query id="expiredReservation">
  <AmbiguousColumns>
@@ -156,21 +151,30 @@
 		     databaseName="COPYID" />
 	   <AmbiguousColumn name="CL_COPYID" prefix="CL"
 		     databaseName="COPYID" />
-	    <AmbiguousColumn name="LENDINGID" prefix="L"
+	   <AmbiguousColumn name="LENDINGID" prefix="L"
 	  		 databaseName="LENDINGID" />
 	   <AmbiguousColumn name="CL_LENDINGID" prefix="CL"
 	 		  databaseName="LENDINGID" />
-	    <AmbiguousColumn name="CUSTOMERID" prefix="R"
+	   <AmbiguousColumn name="CUSTOMERID" prefix="R"
 	 		  databaseName="CUSTOMERID" />
-	    <AmbiguousColumn name="CU_CUSTOMERID" prefix="CU"
+	   <AmbiguousColumn name="CU_CUSTOMERID" prefix="CU"
 			  databaseName="CUSTOMERID" />
 	   <AmbiguousColumn name="L_CUSTOMERID" prefix="L"
 			   databaseName="CUSTOMERID" />
+		
    </AmbiguousColumns>
    <Sentence>
    <![CDATA[
-     SELECT
-      #COLUMNS#
+ 	SELECT
+      distinct (R.bookid) as IDBOOK,  
+      C.COPYID,C.COPYCODE,B.BOOKTITLE,B.BOOKID,
+       (select min(R.reservationid) as ID from reservation r where r.bookid= b.bookid and R.COPYID IS null ) as RESERVATIONID,
+       (select CUS.CUSTOMERNAME from CUSTOMER CUS, RESERVATION RES
+       		where CUS.CUSTOMERID = RES.CUSTOMERID and RES.RESERVATIONID = 
+       			(select min(R.reservationid)  from reservation r where r.bookid= b.bookid and R.COPYID IS null )) as CUSTOMERNAME,
+       (select CUS.CUSTOMERSURNAME from CUSTOMER CUS, RESERVATION RES
+       		where CUS.CUSTOMERID = RES.CUSTOMERID and RES.RESERVATIONID = 
+       			(select min(R.reservationid)  from reservation r where r.bookid= b.bookid and R.COPYID IS null )) as CUSTOMERSURNAME 
      FROM
      RESERVATION R
      	INNER JOIN COPY C ON
@@ -185,9 +189,51 @@
        		CL.LENDINGID = L.LENDINGID
        #WHERE#
         AND R.COPYID IS NULL
+        GROUP BY R.BOOKID,C.COPYID,C.COPYCODE,B.BOOKTITLE,B.BOOKID
+        ORDER BY RESERVATIONID
+
     ]]>
    </Sentence>
  </Query>
- 
+ <Query id="customerPendingReservations">
+ <AmbiguousColumns>
+ <AmbiguousColumn name="BOOKID" prefix="B" databaseName="BOOKID" />
+ <AmbiguousColumn name="CUSTOMERID" prefix="C" databaseName="CUSTOMERID"/>
+ </AmbiguousColumns>
+ <Sentence>
+   <![CDATA[
+ 	SELECT
+ 	 #COLUMNS#
+ 	FROM
+ 	 RESERVATION R
+ 	INNER JOIN BOOK B ON
+ 	 B.BOOKID = R.BOOKID
+ 	 INNER JOIN CUSTOMER C ON
+ 	 C.CUSTOMERID = R.CUSTOMERID
+ 	#WHERE#
+ 	AND RESERVATIONDEADLINE IS NULL		
+ 		]]>
+ 	</Sentence>
+ </Query>
+ <Query id="customerAvailableReservations">
+ <AmbiguousColumns>
+ <AmbiguousColumn name="BOOKID" prefix="B" databaseName="BOOKID"/>
+ <AmbiguousColumn name="CUSTOMERID" prefix="C" databaseName="CUSTOMERID"/>
+ </AmbiguousColumns>
+ <Sentence>
+   <![CDATA[
+ 	SELECT
+ 	 #COLUMNS#
+ 	FROM
+ 	 RESERVATION R
+ 	INNER JOIN BOOK B ON
+ 	 B.BOOKID = R.BOOKID
+ 	 INNER JOIN CUSTOMER C ON
+ 	 C.CUSTOMERID = R.CUSTOMERID
+ 	#WHERE#
+ 	AND RESERVATIONDEADLINE IS NOT NULL		
+ 		]]>
+ </Sentence>
+ </Query>
  </Queries>
 </JdbcEntitySetup>

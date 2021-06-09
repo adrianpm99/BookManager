@@ -26,25 +26,30 @@ public class BookService implements IBookService {
 	private DefaultOntimizeDaoHelper daoHelper;
 
 	@Override
+	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult bookQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException {
 		return this.daoHelper.query(this.bookDao, keyMap, attrList);
 	}
-	@Secured({ PermissionsProviderSecured.SECURED })
+	
 	@Override
+	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult bookInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
 		return this.daoHelper.insert(this.bookDao, attrMap);
 	}
-	@Secured({ PermissionsProviderSecured.SECURED })
+	
 	@Override
+	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult bookUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap)
 			throws OntimizeJEERuntimeException {
 		return this.daoHelper.update(this.bookDao, attrMap, keyMap);
 	}
+	
 	@Secured({ PermissionsProviderSecured.SECURED })
 	@Override
 	public EntityResult bookDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
 		return this.daoHelper.delete(this.bookDao, keyMap);
 	}
+	
 
 }
