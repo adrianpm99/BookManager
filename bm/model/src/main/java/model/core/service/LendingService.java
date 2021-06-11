@@ -7,10 +7,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import com.ontimize.db.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
+import com.ontimize.jee.common.security.PermissionsProviderSecured;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 
 import api.core.service.ILendingService;
@@ -27,12 +29,14 @@ public class LendingService implements ILendingService{
 	
 	
 	@Override
+	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult lendingQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException {
 		return this.daoHelper.query(this.lendingDao, keyMap, attrList);
 	}
 
 	@Override
+	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult lendingInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
 		
 		return this.daoHelper.insert(this.lendingDao, attrMap);
@@ -40,6 +44,7 @@ public class LendingService implements ILendingService{
 
 	@SuppressWarnings("static-access")
 	@Override
+	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult lendingUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap)
 			throws OntimizeJEERuntimeException {
 		
@@ -51,6 +56,7 @@ public class LendingService implements ILendingService{
 	}
 
 	@Override
+	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult lendingDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
 		return this.daoHelper.delete(this.lendingDao, keyMap);
 	}
