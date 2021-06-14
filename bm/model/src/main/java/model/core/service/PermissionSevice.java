@@ -18,7 +18,6 @@ import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 
 import api.core.service.IPermissionService;
 import model.core.dao.PermissionDao;
-import model.core.dao.UserDao;
 import model.core.dao.UserRoleDao;
 
 
@@ -28,8 +27,7 @@ public class PermissionSevice implements IPermissionService {
 	
 	@Autowired
 	private PermissionDao permissionDao;
-	@Autowired
-	private UserDao userDao;
+	
 	@Autowired 
 	private UserRoleDao userRoleDao;
 	
@@ -63,7 +61,7 @@ public class PermissionSevice implements IPermissionService {
 			String userLogin = userInfo.getLogin();
 			// get role id
 			Map<String, Object> key = new HashMap<>();
-			List<String> attr = Arrays.asList(userDao.ID);
+			List<String> attr;
 			key.put(userRoleDao.USER_, userLogin);
 			attr = Arrays.asList(permissionDao.ATTR_ID_ROLENAME);
 			EntityResult userRoleRes = getQuery(key, attr);

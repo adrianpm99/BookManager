@@ -52,5 +52,10 @@ public class UserService implements IUserService {
 		attrMap.put("user_down_date", new Timestamp(Calendar.getInstance().getTimeInMillis()));
 		return this.daoHelper.update(this.userDao, attrMap, keyMap);
 	}
+	
+	public EntityResult userDataQuery(Map<?, ?> keyMap, List<?> attrList) {
+		return this.daoHelper.query(this.userDao, keyMap, attrList,userDao.QUERY_DATA_FROM_USER);
+	}
+	
 
 }

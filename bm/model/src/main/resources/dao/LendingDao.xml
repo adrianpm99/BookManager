@@ -37,6 +37,7 @@
    ]]>
    </Sentence>
   </Query>
+  
   <Query id="copiesFromLending">
   	<AmbiguousColumns>
   		<AmbiguousColumn name="COPYID" prefix="COP" databaseName="COPYID" />
@@ -64,6 +65,7 @@
    ]]>
   	</Sentence>
   </Query>
+  
   <Query id="expiredLending">
    <AmbiguousColumns>
    <AmbiguousColumn name="CUSTOMERID" prefix="C" databaseName="CUSTOMERID" />
@@ -79,6 +81,20 @@
       	C.CUSTOMERID = L.CUSTOMERID
       WHERE lendingdeadline < current_date 
      AND lendingreturndate is null
+   ]]>
+   </Sentence>
+  </Query>
+  
+  <Query id="lendingsInProgress">
+   <Sentence>
+   <![CDATA[
+     SELECT
+      #COLUMNS#
+     FROM
+      LENDING 
+      #WHERE# 
+      AND
+     	 LENDINGRETURNDATE IS NULL
    ]]>
    </Sentence>
   </Query>
