@@ -3,6 +3,7 @@ C:\Users\i5-10600KF\git\BookManager\bm\api\src\main\java\api\core\service\IBookS
 C:\Users\i5-10600KF\git\BookManager\bm\api\src\main\java\api\core\service\ILendingService.java
 C:\Users\i5-10600KF\git\BookManager\bm\api\src\main\java\api\core\service\ICopyService.java
 C:\Users\i5-10600KF\git\BookManager\bm\api\src\main\java\api\core\service\IShelvingService.java
+C:\Users\i5-10600KF\git\BookManager\bm\api\src\main\java\api\core\service\IPermissionService.java
 C:\Users\i5-10600KF\git\BookManager\bm\api\src\main\java\api\core\service\ICopyShelvingService.java
 C:\Users\i5-10600KF\git\BookManager\bm\api\src\main\java\api\core\service\ICustomerService.java
 C:\Users\i5-10600KF\git\BookManager\bm\api\src\main\java\api\core\service\ICopyLendingService.java
