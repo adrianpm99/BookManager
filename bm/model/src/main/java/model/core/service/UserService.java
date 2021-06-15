@@ -38,7 +38,7 @@ public class UserService implements IUserService {
 	public EntityResult userQuery(Map<?, ?> keyMap, List<?> attrList) {
 		return this.daoHelper.query(userDao, keyMap, attrList);
 	}
-	@Secured({ PermissionsProviderSecured.SECURED })
+	
 	public EntityResult userInsert(Map<?, ?> attrMap) {
 		return this.daoHelper.insert(userDao, attrMap);
 	}

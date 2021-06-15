@@ -11,7 +11,7 @@
     <UpdateKeys>
         <Column>USER_</Column>
     </UpdateKeys>
-    <GeneratedKey>USER_</GeneratedKey>
+    <GeneratedKey>user_</GeneratedKey>
     <Queries>
         <Query id="default">
             <ValidColumns>
