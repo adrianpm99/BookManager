@@ -16,10 +16,8 @@
         <Query id="default">
             <ValidColumns>
                 <Column>USER_</Column>
-                <Column>EMAIL</Column>
                 <Column>PASSWORD</Column>
-                <Column>NAME</Column>
-                <Column>SURNAME</Column>
+                
             </ValidColumns>
             <Sentence>
                 <![CDATA[
@@ -34,6 +32,7 @@
         <Query id="login">
             <ValidColumns>
                 <Column>USER_</Column>
+                
                 <Column>PASSWORD</Column>
             </ValidColumns>
             <Sentence>
@@ -45,6 +44,17 @@
                     #WHERE#
                 ]]>
             </Sentence>
+        </Query>
+        <Query id="dataFromUser">
+        <Sentence>
+         <![CDATA[
+                    SELECT
+                        #COLUMNS#
+                    FROM
+                        ${mainschema}.TUSER
+                    #WHERE#
+                ]]>
+        </Sentence>
         </Query>
     </Queries>
 </JdbcEntitySetup>

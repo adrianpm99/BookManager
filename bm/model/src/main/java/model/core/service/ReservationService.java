@@ -1,6 +1,7 @@
 package model.core.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import api.core.service.IReservationService;
 import model.core.dao.CopyDao;
 import model.core.dao.CopyShelvingDao;
 import model.core.dao.ReservationDao;
+import model.core.dao.UserDao;
 
 @Service("ReservationService")
 @Lazy
@@ -33,6 +35,10 @@ public class ReservationService implements IReservationService {
 	private CopyShelvingDao copyShelvingDao;
 	@Autowired
 	private CopyShelvingService copyShelvingService;
+	@Autowired
+	private UserDao userDao;
+	@Autowired
+	private UserService userService;
 	
 
 	@Override
@@ -136,15 +142,55 @@ public class ReservationService implements IReservationService {
 		
 	}
 	
-	public EntityResult customerPendingReservationsQuery(Map<String, Object> keyMap, List<String> attrList)
+	public EntityResult customerReservationsQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException{
 		
-		return this.daoHelper.query(this.reservationDao, keyMap, attrList, ReservationDao.QUERY_CUSTOMER_PENDING_RESERVATIONS);
+		return this.daoHelper.query(this.reservationDao, keyMap, attrList, ReservationDao.QUERY_CUSTOMER_RESERVATIONS);
 	}
 	
 	public EntityResult customerAvailableReservationsQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException{
 		return this.daoHelper.query(this.reservationDao, keyMap, attrList, ReservationDao.QUERY_CUSTOMER_AVAILABLE_RESERVATIONS);
+	}
+	
+	public EntityResult reservationAvailableOnlyForUserLoginQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException{
+		Map<String, Object> key = new HashMap<String, Object>();
+		List<String> attr = new ArrayList<String>();
+		String userLogin = userService.getUserLogin();
+		
+		//get customerid
+		key.put(userDao.USER_, userLogin);
+		attr = Arrays.asList(userDao.CUSTOMER_ID);
+		EntityResult userRes = this.userService.userDataQuery(key, attr);
+		Integer customerId = (Integer) userRes.getRecordValues(0).get(userDao.CUSTOMER_ID);
+		
+		//get reservations availables filter by customer id
+		key.clear();
+		key.put(reservationDao.ATTR_CUSTOMERID, customerId);
+		EntityResult reservationRes = this.customerAvailableReservationsQuery(key, attrList);
+		
+		return reservationRes;
+	}
+	
+	public EntityResult reservationOnlyForUserLoginQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException{
+		Map<String, Object> key = new HashMap<String, Object>();
+		List<String> attr = new ArrayList<String>();
+		String userLogin = userService.getUserLogin();
+		
+		//get customerid
+		key.put(userDao.USER_, userLogin);
+		attr = Arrays.asList(userDao.CUSTOMER_ID);
+		EntityResult userRes = this.userService.userDataQuery(key, attr);
+		Integer customerId = (Integer) userRes.getRecordValues(0).get(userDao.CUSTOMER_ID);
+		
+		//get reservations filter by customer id
+		key.clear();
+		key.put(reservationDao.ATTR_CUSTOMERID, customerId);
+		EntityResult reservationRes = this.customerReservationsQuery(key, attrList);
+		
+		return reservationRes;
 	}
 
 }
