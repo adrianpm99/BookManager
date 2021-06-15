@@ -45,5 +45,16 @@
                 ]]>
             </Sentence>
         </Query>
+        <Query id="dataFromUser">
+        <Sentence>
+         <![CDATA[
+                    SELECT
+                        #COLUMNS#
+                    FROM
+                        ${mainschema}.TUSER
+                    #WHERE#
+                ]]>
+        </Sentence>
+        </Query>
     </Queries>
 </JdbcEntitySetup>

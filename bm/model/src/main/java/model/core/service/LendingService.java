@@ -103,7 +103,7 @@ public class LendingService implements ILendingService{
 			throws OntimizeJEERuntimeException {
 		Map<String, Object> key = new HashMap<String, Object>();
 		List<String> attr = new ArrayList<String>();
-		String userLogin = getUserLogin();
+		String userLogin = userService.getUserLogin();
 		
 		//get customerid
 		key.put(userDao.USER_, userLogin);
@@ -124,7 +124,7 @@ public class LendingService implements ILendingService{
 			throws OntimizeJEERuntimeException {
 		Map<String, Object> key = new HashMap<String, Object>();
 		List<String> attr = new ArrayList<String>();
-		String userLogin = getUserLogin();
+		String userLogin = userService.getUserLogin();
 		
 		//get customerid
 		key.put(userDao.USER_, userLogin);
@@ -140,15 +140,6 @@ public class LendingService implements ILendingService{
 		return lendingRes;
 	}
 	
-	//method to getUserLogin
-	public String getUserLogin() {
-		
-		//get user name
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		UserInformation userInfo = (UserInformation) authentication.getPrincipal();
-		String userLogin = userInfo.getLogin();
-		
-		return userLogin;
-	}
+	
 	
 }

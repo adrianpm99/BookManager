@@ -10,6 +10,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import api.core.service.IUserService;
@@ -17,6 +19,7 @@ import model.core.dao.UserDao;
 
 import com.ontimize.db.EntityResult;
 import com.ontimize.jee.common.security.PermissionsProviderSecured;
+import com.ontimize.jee.common.services.user.UserInformation;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 
 
@@ -56,6 +59,17 @@ public class UserService implements IUserService {
 	public EntityResult userDataQuery(Map<?, ?> keyMap, List<?> attrList) {
 		return this.daoHelper.query(this.userDao, keyMap, attrList,userDao.QUERY_DATA_FROM_USER);
 	}
+	
+	//method to getUserLogin
+		public String getUserLogin() {
+			
+			//get user name
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			UserInformation userInfo = (UserInformation) authentication.getPrincipal();
+			String userLogin = userInfo.getLogin();
+			
+			return userLogin;
+		}
 	
 
 }
