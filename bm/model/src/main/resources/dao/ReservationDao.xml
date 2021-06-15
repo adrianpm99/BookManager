@@ -195,7 +195,7 @@
     ]]>
    </Sentence>
  </Query>
- <Query id="customerPendingReservations">
+ <Query id="customerReservations">
  <AmbiguousColumns>
  <AmbiguousColumn name="BOOKID" prefix="B" databaseName="BOOKID" />
  <AmbiguousColumn name="CUSTOMERID" prefix="C" databaseName="CUSTOMERID"/>
@@ -211,7 +211,7 @@
  	 INNER JOIN CUSTOMER C ON
  	 C.CUSTOMERID = R.CUSTOMERID
  	#WHERE#
- 	AND RESERVATIONDEADLINE IS NULL		
+ 		
  		]]>
  	</Sentence>
  </Query>

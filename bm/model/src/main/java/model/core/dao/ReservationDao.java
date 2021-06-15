@@ -24,6 +24,6 @@ public class ReservationDao extends OntimizeJdbcDaoSupport {
 	public static final String QUERY_EXPIRED_RESERVATION = "expiredReservation";
 	public static final String QUERY__RESERVATION_COPY_SHELVING = "reservationCopyShelving";
 	public static final String QUERY_RESERVATION_CURRENT = "reservationCurrent";
-	public static final String QUERY_CUSTOMER_PENDING_RESERVATIONS = "customerPendingReservations";
+	public static final String QUERY_CUSTOMER_RESERVATIONS = "customerReservations";
 	public static final String QUERY_CUSTOMER_AVAILABLE_RESERVATIONS = "customerAvailableReservations";
 }
