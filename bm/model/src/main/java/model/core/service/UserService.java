@@ -15,7 +15,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import api.core.service.IUserService;
+import model.core.dao.CustomerDao;
 import model.core.dao.UserDao;
+import model.core.dao.UserRoleDao;
 
 import com.ontimize.db.EntityResult;
 import com.ontimize.jee.common.security.PermissionsProviderSecured;
@@ -32,6 +34,19 @@ public class UserService implements IUserService {
 
 	@Autowired
 	private DefaultOntimizeDaoHelper daoHelper;
+	
+	@Autowired
+	private CustomerDao customerDao;
+	
+	@Autowired
+	private CustomerService customerService;
+	
+	@Autowired
+	private UserRoleService userRoleService;
+	
+	@Autowired
+	private UserRoleDao userRoleDao;
+	
 
 	public void loginQuery(Map<?, ?> key, List<?> attr) {
 	}
@@ -42,9 +57,36 @@ public class UserService implements IUserService {
 		return this.daoHelper.query(userDao, keyMap, attrList);
 	}
 	
-	public EntityResult userInsert(Map<?, ?> attrMap) {
-		return this.daoHelper.insert(userDao, attrMap);
+	@SuppressWarnings("static-access")
+	public EntityResult userInsert(Map<String, Object> attrMap)
+	{
+		//Get the name of the new customer which will be added to user table 
+		String userName= (String) attrMap.get("USER_");
+		Map<String, Object> attr= new HashMap<>();
+		attr.put(customerDao.ATTR_CUSTOMERNAME, "");
+		
+		//Add a new empty customer to customer table
+		EntityResult customerInsert= this.customerService.customerInsert(attr);
+		//Get the id generated for the new customer in the customer table
+		Integer customerId= (Integer) customerInsert.get(customerDao.ATTR_CUSTOMERID);
+		attrMap.put(customerDao.ATTR_CUSTOMERID, customerId);
+		attr.clear();
+		
+		//Add data of the role to the map
+		attr.put(userRoleDao.ID_ROLE_NAME, 1);
+		attr.put(userRoleDao.USER_, userName);
+		
+		//Insert data into user table
+		EntityResult userInsert= this.daoHelper.insert(userDao, attrMap);
+		
+		//Insert data into user_role table
+		EntityResult userRoleInsert= this.userRoleService.userRoleInsert(attr);
+		
+		return userInsert;
 	}
+	
+	
+	
 	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult userUpdate(Map<?, ?> attrMap, Map<?, ?> keyMap) {
 		return this.daoHelper.update(userDao, attrMap, keyMap);

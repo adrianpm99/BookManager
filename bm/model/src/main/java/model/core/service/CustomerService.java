@@ -35,7 +35,6 @@ public class CustomerService implements ICustomerService
 	}
 
 	@Override
-	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult customerInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
 		return this.daoHelper.insert(this.customerDao, attrMap);
 	}
