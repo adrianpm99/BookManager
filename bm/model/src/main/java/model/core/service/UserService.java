@@ -87,7 +87,6 @@ public class UserService implements IUserService {
 	
 	
 	
-	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult userUpdate(Map<?, ?> attrMap, Map<?, ?> keyMap) {
 		return this.daoHelper.update(userDao, attrMap, keyMap);
 	}
@@ -97,7 +96,7 @@ public class UserService implements IUserService {
 		attrMap.put("user_down_date", new Timestamp(Calendar.getInstance().getTimeInMillis()));
 		return this.daoHelper.update(this.userDao, attrMap, keyMap);
 	}
-	
+	@Override
 	public EntityResult userDataQuery(Map<?, ?> keyMap, List<?> attrList) {
 		return this.daoHelper.query(this.userDao, keyMap, attrList,userDao.QUERY_DATA_FROM_USER);
 	}
