@@ -58,9 +58,9 @@ public class ReservationService implements IReservationService {
 		data.put(reservationDao.ATTR_BOOKID, attrMap.get(reservationDao.ATTR_BOOKID));
 	    attr.add(copyDao.ATTR_ID);
 	    query = this.reservationCheckAvaliableCopies(data, attr);
-	    if(query.isEmpty()) {
+	 //   if(query.isEmpty()) {
 	    	entityResult =  this.daoHelper.insert(this.reservationDao, attrMap);
-	    }
+	  //  }
 		return entityResult;
 	}
 

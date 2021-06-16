@@ -52,8 +52,9 @@
   		FROM COPY C
   		INNER JOIN COPYLENDING CL ON CL.COPYID= C.COPYID
   		INNER JOIN LENDING L ON L.LENDINGID = CL.LENDINGID
-  		#WHERE#
-		AND LENDINGRETURNDATE NOTNULL
+  		#WHERE# 
+  		 AND  L.LENDINGRETURNDATE NOTNULL 
+		
   	]]>
   	</Sentence>
   </Query>
@@ -68,7 +69,7 @@
       </AmbiguousColumns>
      <Sentence>
       <![CDATA[
-    SELECT
+    SELECT DISTINCT
         #COLUMNS#
     FROM
         COPY COP
@@ -86,7 +87,6 @@
                         CL.COPYID = COP.COPYID
                         WHERE CL.COPYID IS NULL)
 
- 
 
    ]]>
      </Sentence>
