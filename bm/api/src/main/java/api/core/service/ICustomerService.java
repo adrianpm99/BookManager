@@ -15,4 +15,8 @@ public interface ICustomerService
 	public EntityResult customerDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
 	public EntityResult customerForUserLoginQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException;
+	EntityResult customerUserDataQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException;
+	EntityResult customerUserDataUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap)
+			throws OntimizeJEERuntimeException;
 }//ICustomerService

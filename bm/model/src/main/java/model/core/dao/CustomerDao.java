@@ -18,5 +18,6 @@ public class CustomerDao extends OntimizeJdbcDaoSupport
 	public static final String ATTR_CUSTOMERADDRESS = "CUSTOMERADDRESS";
 	public static final String ATTR_CUSTOMERTLF = "CUSTOMERTLF";
 	public static final String ATTR_CUSTOMEREMAIL = "CUSTOMEREMAIL";
+	public static final String QUERY_CUSTOMERUSERDATA ="customerUserData";
 	
 }//CustomerDao

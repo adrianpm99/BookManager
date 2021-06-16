@@ -20,21 +20,19 @@ import api.core.service.ICustomerService;
 import model.core.dao.CustomerDao;
 import model.core.dao.UserDao;
 
-
 @Service("CustomerService")
 @Lazy
-public class CustomerService implements ICustomerService
-{
-	
+public class CustomerService implements ICustomerService {
+
 	@Autowired
 	private CustomerDao customerDao;
-	
+
 	@Autowired
 	private UserDao userDao;
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private DefaultOntimizeDaoHelper daoHelper;
 
@@ -62,27 +60,73 @@ public class CustomerService implements ICustomerService
 	public EntityResult customerDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
 		return this.daoHelper.delete(this.customerDao, keyMap);
 	}
-	
+
 	@Override
 	public EntityResult customerForUserLoginQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException {
 		Map<String, Object> key = new HashMap<String, Object>();
 		List<String> attr = new ArrayList<String>();
 		String userLogin = userService.getUserLogin();
-		
-		//get customerid
+
+		// get customerid
 		key.put(userDao.USER_, userLogin);
 		attr = Arrays.asList(userDao.CUSTOMER_ID);
 		EntityResult userRes = this.userService.userDataQuery(key, attr);
 		Integer customerId = (Integer) userRes.getRecordValues(0).get(userDao.CUSTOMER_ID);
-		
-		//get customerid filter by customer id
+
+		// get customerid filter by customer id
 		key.clear();
 		key.put(customerDao.ATTR_CUSTOMERID, customerId);
 		EntityResult customerRes = this.customerQuery(key, attrList);
-		
+
 		return customerRes;
-		
+
 	}
-	
-}//CustomerService
+
+	@SuppressWarnings("static-access")
+	@Override
+	public EntityResult customerUserDataQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException {
+		return this.daoHelper.query(this.customerDao, keyMap, attrList, this.customerDao.QUERY_CUSTOMERUSERDATA);
+
+	}
+
+	@Override
+	public EntityResult customerUserDataUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap)
+			throws OntimizeJEERuntimeException {
+
+		Map<String, Object> attr = new HashMap<>();
+		Map<String, Object> key = new HashMap<>();
+		List<String> attrList = new ArrayList<>();
+		EntityResult entityResult = null;
+
+		// get user_
+		key.put(userDao.CUSTOMER_ID, keyMap.get(customerDao.ATTR_CUSTOMERID));
+		attrList = Arrays.asList(userDao.USER_);
+		EntityResult userRes = this.userService.userDataQuery(key, attrList);
+		String user = (String) userRes.getRecordValues(0).get(userDao.USER_);
+		key.clear();
+
+		// build the update user query
+		attr.put(userDao.PASSWORD, attrMap.get(userDao.PASSWORD));
+		key.put(userDao.USER_, user);
+
+		// if receive a password make the user update
+		if (attrMap.containsKey(userDao.PASSWORD)) {
+
+			entityResult = this.userService.userUpdate(attr, key);
+			// if also receive a customer data make the customer update
+		} else if (attrMap.containsKey(customerDao.ATTR_CUSTOMERADDRESS)
+				|| attrMap.containsKey(customerDao.ATTR_CUSTOMERDNI)
+				|| attrMap.containsKey(customerDao.ATTR_CUSTOMEREMAIL)
+				|| attrMap.containsKey(customerDao.ATTR_CUSTOMERNAME)
+				|| attrMap.containsKey(customerDao.ATTR_CUSTOMERSURNAME)
+				|| attrMap.containsKey(customerDao.ATTR_CUSTOMERTLF)) {
+			entityResult = this.customerUpdate(attrMap, keyMap);
+		}
+
+		return entityResult;
+
+	}
+
+}// CustomerService

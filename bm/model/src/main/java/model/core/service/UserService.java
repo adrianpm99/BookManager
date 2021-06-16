@@ -86,10 +86,11 @@ public class UserService implements IUserService {
 	}
 	
 	
-	
 	public EntityResult userUpdate(Map<?, ?> attrMap, Map<?, ?> keyMap) {
 		return this.daoHelper.update(userDao, attrMap, keyMap);
 	}
+	
+	
 	@Secured({ PermissionsProviderSecured.SECURED })
 	public EntityResult userDelete(Map<?, ?> keyMap) {
 		Map<Object, Object> attrMap = new HashMap<>();

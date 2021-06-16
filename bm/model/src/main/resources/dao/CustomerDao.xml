@@ -12,4 +12,23 @@
   <Column>CUSTOMERID</Column>
  </UpdateKeys>
  <GeneratedKey>customerid</GeneratedKey>
+ 
+ <Queries>
+  <Query id="customerUserData">
+  <AmbiguousColumns>
+   	<AmbiguousColumn name="CUSTOMERID" prefix="C" />
+  </AmbiguousColumns>
+   <Sentence>
+	<![CDATA[
+	select
+		#COLUMNS#
+	from
+		CUSTOMER C
+	INNER JOIN TUSER TU ON
+		C.CUSTOMERID = TU.CUSTOMERID
+	#WHERE#			
+	]]>
+   </Sentence>
+  </Query>
+ </Queries>
 </JdbcEntitySetup>
