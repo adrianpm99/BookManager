@@ -78,7 +78,7 @@ public class CustomerService implements ICustomerService {
 		// get customerid filter by customer id
 		key.clear();
 		key.put(customerDao.ATTR_CUSTOMERID, customerId);
-		EntityResult customerRes = this.customerQuery(key, attrList);
+		EntityResult customerRes = this.customerUserDataQuery(key, attrList);
 
 		return customerRes;
 
