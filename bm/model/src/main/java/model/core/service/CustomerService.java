@@ -61,6 +61,7 @@ public class CustomerService implements ICustomerService {
 		return this.daoHelper.delete(this.customerDao, keyMap);
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public EntityResult customerForUserLoginQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException {
@@ -91,6 +92,7 @@ public class CustomerService implements ICustomerService {
 
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public EntityResult customerUserDataUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap)
 			throws OntimizeJEERuntimeException {
@@ -115,13 +117,15 @@ public class CustomerService implements ICustomerService {
 		if (attrMap.containsKey(userDao.PASSWORD)) {
 
 			entityResult = this.userService.userUpdate(attr, key);
-			// if also receive a customer data make the customer update
-		} else if (attrMap.containsKey(customerDao.ATTR_CUSTOMERADDRESS)
+		// if receive a customer data make the customer update
+		}
+		if (attrMap.containsKey(customerDao.ATTR_CUSTOMERADDRESS)
 				|| attrMap.containsKey(customerDao.ATTR_CUSTOMERDNI)
 				|| attrMap.containsKey(customerDao.ATTR_CUSTOMEREMAIL)
 				|| attrMap.containsKey(customerDao.ATTR_CUSTOMERNAME)
 				|| attrMap.containsKey(customerDao.ATTR_CUSTOMERSURNAME)
 				|| attrMap.containsKey(customerDao.ATTR_CUSTOMERTLF)) {
+			
 			entityResult = this.customerUpdate(attrMap, keyMap);
 		}
 

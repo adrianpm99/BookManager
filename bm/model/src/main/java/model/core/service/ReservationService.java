@@ -153,6 +153,7 @@ public class ReservationService implements IReservationService {
 		return this.daoHelper.query(this.reservationDao, keyMap, attrList, ReservationDao.QUERY_CUSTOMER_AVAILABLE_RESERVATIONS);
 	}
 	
+	@SuppressWarnings("static-access")
 	public EntityResult reservationAvailableOnlyForUserLoginQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException{
 		Map<String, Object> key = new HashMap<String, Object>();
@@ -173,6 +174,7 @@ public class ReservationService implements IReservationService {
 		return reservationRes;
 	}
 	
+	@SuppressWarnings("static-access")
 	public EntityResult reservationOnlyForUserLoginQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException{
 		Map<String, Object> key = new HashMap<String, Object>();

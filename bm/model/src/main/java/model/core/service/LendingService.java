@@ -91,11 +91,13 @@ public class LendingService implements ILendingService{
 		return this.daoHelper.query(this.lendingDao, keyMap, attrList, LendingDao.QUERY_COPIES_FROM_LENDING);
 	}
 	
+	@SuppressWarnings("static-access")
 	public EntityResult lendingsInProgressQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException {
 		return this.daoHelper.query(this.lendingDao, keyMap, attrList,lendingDao.QUERY_LENDINGS_IN_PROGRESS);
 	}
 	
+	@SuppressWarnings("static-access")
 	@Override
 	public EntityResult lendingsForUserLoginQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException {
@@ -118,6 +120,7 @@ public class LendingService implements ILendingService{
 		
 	}
 	
+	@SuppressWarnings("static-access")
 	public EntityResult lendingsInProgressForUserLoginQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException {
 		Map<String, Object> key = new HashMap<String, Object>();
