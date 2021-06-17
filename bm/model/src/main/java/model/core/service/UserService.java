@@ -23,6 +23,7 @@ import com.ontimize.db.EntityResult;
 import com.ontimize.jee.common.security.PermissionsProviderSecured;
 import com.ontimize.jee.common.services.user.UserInformation;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
+import com.ontimize.jee.server.security.SecurityTools;
 
 
 @Lazy
@@ -87,7 +88,11 @@ public class UserService implements IUserService {
 	
 	
 	public EntityResult userUpdate(Map<?, ?> attrMap, Map<?, ?> keyMap) {
-		return this.daoHelper.update(userDao, attrMap, keyMap);
+		
+		EntityResult entityResult =  this.daoHelper.update(userDao, attrMap, keyMap);
+		//invalidate browser cache for not save user credentials
+		SecurityTools.invalidateSecurityManager(this.daoHelper.getApplicationContext());
+		return entityResult;
 	}
 	
 	

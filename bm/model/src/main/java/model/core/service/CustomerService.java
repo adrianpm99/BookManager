@@ -15,6 +15,7 @@ import com.ontimize.db.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.common.security.PermissionsProviderSecured;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
+import com.ontimize.jee.server.security.SecurityTools;
 
 import api.core.service.ICustomerService;
 import model.core.dao.CustomerDao;
@@ -115,8 +116,9 @@ public class CustomerService implements ICustomerService {
 
 		// if receive a password make the user update
 		if (attrMap.containsKey(userDao.PASSWORD)) {
-
 			entityResult = this.userService.userUpdate(attr, key);
+			//invalidate browser cache for not save user credentials
+			SecurityTools.invalidateSecurityManager(this.daoHelper.getApplicationContext());
 		// if receive a customer data make the customer update
 		}
 		if (attrMap.containsKey(customerDao.ATTR_CUSTOMERADDRESS)
@@ -128,7 +130,7 @@ public class CustomerService implements ICustomerService {
 			
 			entityResult = this.customerUpdate(attrMap, keyMap);
 		}
-
+		
 		return entityResult;
 
 	}
