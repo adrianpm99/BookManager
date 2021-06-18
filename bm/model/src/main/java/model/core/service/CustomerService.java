@@ -95,7 +95,7 @@ public class CustomerService implements ICustomerService {
 
 	@SuppressWarnings("static-access")
 	@Override
-	public EntityResult customerUserDataUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap)
+	public EntityResult customerMyDataUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap)
 			throws OntimizeJEERuntimeException {
 
 		Map<String, Object> attr = new HashMap<>();
@@ -133,6 +133,31 @@ public class CustomerService implements ICustomerService {
 		
 		return entityResult;
 
+	}
+	
+	@SuppressWarnings("static-access")
+	@Override
+	public EntityResult customerMyDataQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException {
+		Map<String, Object> key = new HashMap<String, Object>();
+		List<String> attr = new ArrayList<>();
+		String userLogin = userService.getUserLogin();
+		
+		//get customerid
+		key.put(userDao.USER_, userLogin);
+		attr = Arrays.asList(userDao.CUSTOMER_ID);
+		EntityResult userRes = this.userService.userDataQuery(key, attr);
+		Integer customerId = (Integer) userRes.getRecordValues(0).get(userDao.CUSTOMER_ID);
+		
+		//replace the received customerid for the customerid obtained and get the user data
+		//filter by customerid
+		key.clear();
+		key.put(customerDao.ATTR_CUSTOMERID, customerId);
+		EntityResult customerRes = this.customerUserDataQuery(key, attrList);
+		
+		return customerRes;
+		
+		
 	}
 
 }// CustomerService
